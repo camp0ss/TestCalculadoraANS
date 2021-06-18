@@ -62,7 +62,7 @@ class Secante:
         print(resu)
         html = resu.to_html() #pasar a tabla HTML
         print("\nRaíz es: ", x3)
-        salida = {"tabla":html, "raiz":x3, "error":error,"graficar":"si"} #grafica
+        salida = {"tabla":html, "raiz":x3, "error":error,"funcion":sp.rcode(self.funcion), "metodo":"Secante","graficar":"si"} #grafica
         return salida
 
 #ecuacion = parse_expr("tan(x)+1")

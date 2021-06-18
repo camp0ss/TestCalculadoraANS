@@ -128,7 +128,7 @@ class Falsa_posicion:
             return salida
 
         else:
-            salida = "No se puede operar"
+            salida = {"metodo":"No se puede operar"}
             return salida
 
 #ecuacion = parse_expr("tan(x)-x+1")

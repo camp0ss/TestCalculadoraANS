@@ -13,9 +13,7 @@ class MultiPasos:
         self.yo = yo
         self.x = xlim
         self.h = espaciado
-        print("debig", self.h, type(self.h))
         self.n = n
-        print("debig", self.n, type(self.n))
     #evalua la funcion en x,y
     def evalF(tn,yn,f):
         x = sym.Symbol("x")
@@ -108,12 +106,12 @@ class MultiPasos:
             n = len(fi)-2
             y = yn[i]+(h/720)*(251*fi[n+1]+646*fi[n]-254*fi[n-1]+106*fi[n-2]-19*fi[n-3])
         
-        k = len(fi)-1
-        predictor = fi[k]
+        k = len(yn)-1
+        predictor = yn[k-1]
         j = len(tn)-1
         tn.pop(j)
         t = {"xi":tn,"yi":yn,"fi":fi}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"tabla":html,"Valor_metodo_predictor":predictor,"Valor_metodo_corrector":y, "metodo":"multipasos"}
+        salida = {"tabla":html,"Valor_metodo_predictor":predictor,"Valor_metodo_corrector":yn[k],"metodo":"multipasos"}
         return salida
