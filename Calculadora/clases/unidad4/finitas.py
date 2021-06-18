@@ -26,7 +26,6 @@ def error_calculator(func,estimate_value, searched_value, method_name):
     real_value.expand()
     real_value = real_value.subs(x, searched_value)
     e = abs(round(real_value-estimate_value,7))
-    print(real_value)
     er = round(abs(e/real_value),7)
     er100 = round(abs(((e/real_value)*100)),7)
     errors = {"estimateValue": estimate_value , "realValue": real_value ,"e" : e ,"er" : er , "er100" : er100, "funcion":rcode(func), "metodo":method_name}
