@@ -1,0 +1,37 @@
+{% extends "calculadora.html" %}
+
+{% block title %} Método de Extrapolación de Richardson {% endblock %}
+
+{% block head %}
+Método de Extrapolación de Richardson
+{% endblock %}
+
+{% block opciones %}
+<div>
+    <p style="display: inline-block;">Método para Extrapolación de Richardson: </p>
+    <select style="display: inline-block;" name="opcion" id="opciones">
+        <option value="1" selected>Primera derivada con primer diferencia hacia adelante</option>
+        <option value="2">Primera derivada con primer diferencia hacia atras</option>
+        <option value="3">Primera derivada con segunda diferencia hacia adelante</option>
+        <option value="4">Primera derivada con segunda diferencia hacia atras</option>
+        <option value="5">Primera derivada con central de segundo orden</option>
+        <option value="6">Primera derivada con central de cuarto orden</option>
+        <option value="7">Primera derivada con primera formula 3 puntos</option>
+        <option value="8">Primera derivada con segunda formula 3 puntos</option>
+        <option value="9">Cuarta derivada con primer diferencia hacia adelante</option>
+    </select>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<p>Valos de h:</p><input id="valorH" name="valorH" type="text" required></input>
+<p>Punto a evaluar:</p><input id="valorX" name="valorX" type="text" required></input>
+<p>Nivel:</p><input id="nivel" name="nivel" type="text" required></input>
+{% endblock %}
+
+{% block tipo %}richardson{% endblock %}
+
+{% block etiqueta %}
+style="width: 5%;"
+{% endblock %}

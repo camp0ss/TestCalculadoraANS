@@ -1,0 +1,227 @@
+
+*{
+	margin: 0px;
+    padding: 0px;
+}
+
+body {
+	font-family: 'Inconsolata', monospace !important;
+	color:white;
+    background-size: 400%;
+    animation: bganimation 15s infinite;
+    /*background-image: linear-gradient(90deg, #ff00cc, #333399);*/
+	/*background-image: linear-gradient(90deg, #cc2b5e, #753a88);*/
+	/*background-image: linear-gradient(90deg, #7b4397, #dc2430);*/
+	/*background-image: linear-gradient(90deg, #c31432, #240b36);*/
+	background-image: linear-gradient(90deg, #c33764, #1d2671);
+    /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',sans-serif;*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes bganimation {
+    0%{background-position: 0% 50%;}
+    50%{background-position: 100% 50%;}
+    100%{background-position: 0% 50%;}
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+button
+{
+	margin:1px !important;
+}
+
+table
+{
+	margin:2%;
+	border-spacing: 10px;
+	text-align:center;
+}
+
+table tr > td
+{
+	width:500px;
+}
+
+#codigo{
+	display: none;
+}
+
+.editor
+{
+	color: rgba(95, 95, 95, 0.76);
+	border-radius: 5px;
+	width:100%;
+	height: 130px;
+	justify-content: center;
+	margin-bottom:1%;
+}
+
+/*  
+    Estilos generales del menú de ANS135.
+*/
+
+	.primer-nivel{
+		border-top: 1px solid rgba(255, 255, 255, 0.5);
+		border-left: 1px solid rgba(255, 255, 255, 0.5);
+	}
+
+	#menu-unidades ul{
+		list-style: none;
+		border-radius: 8px;
+		backdrop-filter: blur(20px);
+		background: rgba(0, 0, 0, 0.68);
+		box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
+	}
+
+	#menu-unidades li{
+		line-height: 4rem;
+		position: relative;
+	}
+
+	#menu-unidades li ul{
+		position: absolute;
+	}
+
+	#menu-unidades a{
+		width: 260px;
+		height: 60px;
+		display: block;
+		padding: 0 2.5rem;
+		border-radius: 8px;
+		text-align: center;
+		/*font-family: fantasy;*/
+		transition: all 0.5s;
+		text-decoration: none;
+		transform: translateY(15%);
+	}
+
+	#menu-unidades a:hover{
+		background: #FF8C00;
+		background-clip: text;
+		-moz-background-clip: text;
+		-webkit-background-clip: text;
+		-moz-text-fill-color: transparent;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.primer-nivel > li > a{
+		font-size: 20px;
+		/*Degradado del texto*/
+		background-clip: text;
+		-moz-background-clip: text;
+		-webkit-background-clip: text;
+		-moz-text-fill-color: transparent;
+		-webkit-text-fill-color: transparent;
+		background-image: linear-gradient(120deg,  #2980b9, #6dd5fa, #ffffff);
+	}
+
+	.segundo-nivel > li > a{
+		font-size: 15px;
+		/*Degradado del texto*/
+		background-clip: text;
+		-moz-background-clip: text;
+		-webkit-background-clip: text;
+		-moz-text-fill-color: transparent;
+		-webkit-text-fill-color: transparent;
+		background-image: linear-gradient(120deg,  #2980b9, #6dd5fa, #ffffff);
+	}
+
+	.tercer-nivel > li > a{
+		font-size: 15px;
+		/*Degradado del texto*/
+		background-clip: text;
+		-moz-background-clip: text;
+		-webkit-background-clip: text;
+		-moz-text-fill-color: transparent;
+		-webkit-text-fill-color: transparent;
+		background-image: linear-gradient(120deg,  #2980b9, #6dd5fa, #ffffff);
+	}
+
+	.item{
+		color: #fff;
+		display: block;
+		position: relative;
+		text-decoration: none;
+	}
+
+	.item:before{
+		content: '';
+		left: 0px;
+		width: 0px;
+		height: 50px;
+		position: absolute;
+		transition: all 300ms;
+		background: linear-gradient(120deg, #acb6e5, #86fde8);
+	}
+
+	.item:hover:before{
+		width: 3.5px;
+		border-radius: 20px;
+	}
+
+	/*  
+		Estilos del primer nivel del menú de ANS135.
+	*/
+
+	#menu-unidades > ul{
+		width: 100%;
+		display: table;
+	}
+
+	#menu-unidades > ul > li{
+		float: left;
+	}
+
+/*  
+    Estilos del segundo nivel del menú de ANS135.
+*/
+
+	#menu-unidades li li{
+		max-height: 0;
+		overflow: hidden;
+		transition: all 0.3s;
+	}
+
+	#menu-unidades > ul > li > ul{
+		top: 100%;
+	}
+
+	#menu-unidades li:hover > ul > li{
+		max-height: 900px;
+		overflow: visible;
+	}
+
+/*  
+    Estilos del tercer nivel del menú de ANS135.
+*/
+
+	#menu-unidades ul ul ul{
+		top: 0;
+		left: 100%;
+	}
+
+/* 
+	Estilos de los botones de la calculadora de ANS135
+*/
+
+	.form-control{
+		width: 100px;
+		height: 100px;
+		border: none;
+		cursor: pointer;
+		border-radius: 5px;
+		transition: all 0.5s;
+		background: rgba(255, 255, 255, 0.2);
+		box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
+		border-top: 1px solid rgba(255, 255, 255, 0.5);
+		border-left: 1px solid rgba(255, 255, 255, 0.5);
+	}
+
+
+

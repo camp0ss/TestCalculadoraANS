@@ -1,0 +1,35 @@
+{% extends "calculadora.html" %}
+
+{% block title %} Métodos de Euler {% endblock %}
+
+{% block opciones %}
+<div>
+    <p style="display: inline-block;">Método para Euler: </p>
+    <select style="display: inline-block;" name="opcion" id="opciones">
+        <option value="1" selected>Euler hacia adelante</option>
+        <option value="2">Euler hacia atras</option>
+        <option value="3">Euler centrado</option>
+        <option value="4">Euler modificado</option>
+    </select>
+</div>
+{% endblock %}
+
+{% block head %}
+Métodos de Euler
+{% endblock %}
+
+{% block content %}
+<p>x inicial:</p><input id="xInicial" name="xInicial" type="text" required></input>
+<p>y inicial:</p><input id="yInicial" name="yInicial" type="text" required></input>
+{% endblock %}
+
+{% block content2 %}
+<p>Intervalo:</p><input id="valorH" name="valorH" type="text" required></input>
+<p>Punto a evaluar:</p><input id="punto" name="punto" type="text" required></input>
+{% endblock %}
+
+{% block tipo %}euler{% endblock %}
+
+{% block etiqueta %}
+style="width: 0%;"
+{% endblock %}

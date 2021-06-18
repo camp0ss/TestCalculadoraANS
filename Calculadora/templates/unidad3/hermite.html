@@ -1,0 +1,103 @@
+{% load static %}
+
+<html>
+
+<head>
+	<meta charset="utf8">
+	<title>{% block title %} {% endblock %}</title>
+	<link rel="stylesheet" href="{% static 'Calculadora/styles/keyboard-style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Calculadora/mathquill/mathquill.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Calculadora/styles/style.css' %}">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+	<script type="text/javascript" src="{% static 'Calculadora/scripts/jQuery v3.1.1.js' %}"></script>
+	<script type="text/javascript" src="{% static 'Calculadora/mathquill/mathquill.js' %}"></script>
+	<script type="text/javascript" src="{% static 'Calculadora/scripts/table.js' %}"></script>
+
+	<script src="{% static 'Calculadora/scripts/bootstrap.min.js'%}"></script>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	{% include "navBar.html" %}
+
+	<div>
+		<h1 id="titulo">Método de Hermite</h1>
+	</div>
+	<!--
+		Estilo de la calculadora 
+	-->
+
+	<form action="/solve/" method="GET">
+		<table>
+			<tr id="invisible" style="display: none;">
+				<td>
+					<code id="codigo" style="padding:2%;"></code><br><br>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<p style="display: inline-block;">Columnas</p>
+						<input style="display: inline-block;" type="text" id="cols" name="cols"> <br />
+						<p style="display: inline-block;">Filas</p>
+						<input style="display: inline-block;" type="text" id="rows" name="rows"
+							value="2"><br>
+						<input type="button" id="enviar" value="Crear tabla" onclick="crear()" />
+						<input type="button" id="limpiar" value="Limpiar" onclick="crear2   ()" />
+					</div>
+				</td>
+				<td>
+
+					<p>Punto a evaluar:</p><input type="text" name="punto" />
+
+					<span type="hidden" type="text" id="codigo" name="funcion" value="2"
+						style='padding:2%;'></span><br><br>
+					<input id="aver" name="funcion" type="text" value="aver">
+					<input type="hidden" id="aver2" name="tipo" type="text" value="hermite">
+					<input type="submit" value="Resolver">
+				</td>
+			</tr>
+		</table>
+
+		<div id="resultado"></div>
+	</form>
+
+	<script>
+		
+		function crear() {
+			var col = document.getElementById("cols").value;
+			var filas = document.getElementById("rows").value;
+			var titulos = ["x","f(x)","f'(x)","f''(x)","f'''(x)","f''''(x)","f'''''(x)",]
+
+			var tabla = "<table border=\"0\">";
+
+			tabla += "<tr><td></td>";
+			for (j = 0; j < col; j++) {
+				tabla += "<td><p>" + titulos[j]+ "</p></td>";
+			}
+			tabla += "</tr>";
+
+			for (i = 0; i < filas; i++) {
+				tabla += "<tr>";
+				tabla += "<td><p>" + (i + 1) + "</p></td>";
+				for (j = 0; j < col; j++) {
+					tabla += "<td>" + "<input type=\"text\" size=\"1\" name=\"" + i + "_" + j + "\">" + "</td>";
+				}
+				tabla += "</tr>";
+			}
+			tabla += "</table>";
+			document.getElementById("resultado").innerHTML = tabla;
+		}
+
+		function crear2() {
+			document.getElementById("resultado").innerHTML = "";
+		}
+	</script>
+</body>
+
+</html>

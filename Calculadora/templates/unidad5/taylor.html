@@ -1,0 +1,26 @@
+{% extends "calculadora.html" %}
+
+{% block title %} Métodos de Taylor {% endblock %}
+
+{% block head %}
+Métodos de Taylor
+{% endblock %}
+
+{% block content %}
+<p>x inicial:</p><input id="xInicial" name="xInicial" type="text" required></input>
+<p>y inicial:</p><input id="yInicial" name="yInicial" type="text" required></input>
+{% endblock %}
+
+{% block content2 %}
+<p>Intervalo:</p><input id="valorH" name="valorH" type="text" required></input>
+<p>Punto a evaluar:</p><input id="punto" name="punto" type="text" required></input>
+{% endblock %}
+{% block content3 %}
+<p>Orden:</p><input id="orden" name="orden" type="text" required></input>
+{% endblock %}
+
+{% block etiqueta %}
+style="width: 0%;"
+{% endblock %}
+
+{% block tipo %}taylor{% endblock %}

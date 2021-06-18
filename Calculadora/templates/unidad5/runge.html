@@ -1,0 +1,34 @@
+{% extends "calculadora.html" %}
+
+{% block title %} Método de Runge Kutta {% endblock %}
+
+{% block head %}
+Método de Runge Kutta
+{% endblock %}
+
+{% block opciones %}
+<div>
+    <p style="display: inline-block;">Método para Runge Kutta: </p>
+    <select style="display: inline-block;" name="opcion" id="opciones">
+        <option value="1" selected>Runge-kutta de segundo orden</option>
+        <option value="2">Runge-kutta de tercer orden</option>
+        <option value="3">Runge-kutta de cuarto orden</option>
+    </select>
+</div>
+{% endblock %}
+
+{% block content %}
+<p>x inicial:</p><input id="xInicial" name="xInicial" type="text" required></input>
+<p>y inicial:</p><input id="yInicial" name="yInicial" type="text" required></input>
+{% endblock %}
+
+{% block content2 %}
+<p>Intervalo:</p><input id="valorH" name="valorH" type="text" required></input>
+<p>Punto a evaluar:</p><input id="punto" name="punto" type="text" required></input>
+{% endblock %}
+
+{% block etiqueta %}
+style="width: 0%;"
+{% endblock %}
+
+{% block tipo %}runge{% endblock %}

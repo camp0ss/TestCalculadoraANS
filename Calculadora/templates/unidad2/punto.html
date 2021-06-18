@@ -1,0 +1,14 @@
+{% extends "calculadora.html" %}
+
+{% block title %} Método de Punto fijo {% endblock %}
+
+{% block head %}
+Método de Punto fijo
+{% endblock %}
+
+{% block content %}
+<p>Intervalo</p><input id="val1" name="intervalo" type="text" required></input>
+<p>Cifras significativas</p><input id="val2" name="cifras" type="text" required></input>
+{% endblock %}
+
+{% block tipo %}punto{% endblock %}

@@ -1,0 +1,101 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'Calculadora/styles/keyboard-style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Calculadora/mathquill/mathquill.css' %}">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    
+    <script type="text/javascript" src="{% static 'Calculadora/scripts/jQuery v3.1.1.js' %}"></script>
+	<script type="text/javascript" src="{% static 'Calculadora/mathquill/mathquill.js' %}"></script>
+	<script src="{% static 'Calculadora/scripts/bootstrap.min.js'%}"></script>
+	
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <header class="encabezado">
+        <!-- 
+            Menu de navegación de las unidades de ANS135 
+        -->
+        <nav id="menu-unidades">
+            <ul class="primer-nivel">
+                <!-- 
+                    Temas de la unidad número uno de ANS135 
+                -->
+                <li><a href="#">Unidad I</a>
+                    <ul class="segundo-nivel">
+                        <li><a href="taylor" class="item">Series de Taylor</a></li>
+                    </ul>
+                </li>
+                <!-- 
+                    Temas de la unidad número dos de ANS135 
+                -->
+                <li><a href="#">Unidad II</a>
+                    <ul class="segundo-nivel">
+                        <li><a href="#" class="item">Métodos cerrados</a>
+                            <ul class="tercer-nivel">
+                                <li><a href="/biseccion/" class="item">Bisección</a></li>
+                                <li><a href="/falsa/" class="item">Falsa posición</a></li>
+                                <li><a href="/punto/" class="item">Punto fijo</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" class="item">Métodos abiertos</a>
+                            <ul class="tercer-nivel">
+                                <li><a href="/secante/" class="item">Secante</a></li>
+                                <li><a href="/newton/" class="item">Newton Raphson</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/muller/" class="item">Müller</a>                 
+                        </li>
+                    </ul>
+                </li>
+                <!-- 
+                    Temas de la unidad número tres de ANS135 
+                -->
+                <li><a href="#">Unidad III</a>
+                    <ul class="segundo-nivel">
+                        <li><a href="#" class="item">Interpolación lineal</a></li>
+                        <li><a href="/lagrange/" class="item">Método de LaGrange</a></li>
+                        <li><a href="" class="item">Métodos de Newton</a>
+                            <ul class="tercer-nivel">
+                                <li><a href="/diffDivididas/" class="item">Diferencias divididas</a></li>
+                                <li><a href="/polNewton/" class="item">Recursividad</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/hermite/" class="item">Método de Hermite</a></li>
+                    </ul>
+                </li>
+                <!-- 
+                    Temas de la unidad número cuatro de ANS135 
+                -->
+                <li><a href="#">Unidad IV</a>
+                    <ul class="segundo-nivel">
+                        <li><a href="/derivacion/" class="item">Diferenciación numérica</a></li>
+                        <li><a href="/integracion/" class="item">Integración numérica</a></li>
+                        <li><a href="/richardson/" class="item">Extrapolación de Richardson</a></li>
+                        <li><a href="/rosemberg/" class="item">Integración por Rosemberg</a></li>
+                    </ul>
+                </li>
+                <!-- 
+                    Temas de la unidad número cinco de ANS135 
+                -->
+                <li><a href="#">Unidad V</a>
+                    <ul class="segundo-nivel">
+                        <li><a href="/euler/" class="item">Método de Euler</a></li>
+                        <li><a href="/taylor" class="item">Método de Taylor</a></li>
+                        <li><a href="/runge/" class="item">Método Runge Kutta</a></li>
+                        <li><a href="/adaptativo/" class="item">Métodos adaptativo</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>

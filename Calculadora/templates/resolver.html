@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Método: {{tipo}}</title>
+
+  <!-- Scrip para grafica-->
+  <link rel="stylesheet" type="text/css" href="{% static 'Calculadora/styles/grafica.css' %}">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/3.10.0/math.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'Calculadora/styles/styleResu.css' %}">
+
+
+  <!-- load http://maurizzzio.github.io/function-plot/           https://wzrd.in/standalone/function-plot@1.14.0 -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/function-plot/1.22.7/function-plot.js"></script>
+
+
+  <script src="https://unpkg.com/mathjs@9.4.2/lib/browser/math.js"></script>
+
+  <script src="https://cdn.plot.ly/plotly-1.35.2.min.js"></script>
+</head>
+
+<body>
+  {% include "navBar.html" %}
+  <div class="contenedor">
+
+    <h1 id="titulo">Solución</h1>
+    {%if av.funcion %}
+    <h1>Función:</h1>
+    <p><span id="problem"> {{av.funcion}}</span></p>
+    {% endif %}
+    <h1>Método: {{av.metodo}}</h1>
+    {%if av.graficar %}
+    <form type="hidden" id="form">
+      {% csrf_token %}
+      <input type="hidden" type="text" id="eq" value="{{ av.funcion }}" />
+      <input type="hidden" type="submit" value="Draw" />
+    </form type="hidden">
+    <h1>Gráfica:</h1>
+    <div id="plot"></div>
+    {% endif %}
+
+    {%if av.tabla %}
+    <h1>Tabla de iteraciones:</h1>
+    {{ av.tabla|safe }} {% endif %}
+    {%if av.raiz %}
+    <h1>Raíz: {{ av.raiz}}</h1>
+    {% endif %}
+    {%if av.error %}
+    <h1>Error: {{ av.error}}</h1>
+    {% endif %}
+
+
+    <!--Unidad 3:-->
+    {%if av.simple %}
+    <h1>Funcion simplificada: </h1>
+    <p><span id="problem2">{{ av.simple}}</span></p>
+    {% endif %}
+    {%if av.evalucion %}
+    <h1>Resultado: {{av.evalucion}}</h1>
+    {% endif %}
+    {%if av.valor_real %}
+    <h1>Valor real: {{av.valor_real}}</h1>
+    {% endif %}
+    {%if av.errorx100 %}
+    <h1>Error: {{ av.errorx100}}</h1>
+    {% endif %}
+    {%if av.errorteorico %}
+    <h1>Error teorico: {{ av.errorteorico}}</h1>
+    {% endif %}
+    <!--Unidad 4: Diferenciacion-->
+    {%if av.estimateValue %}
+    <h1>Valor estimado: {{ av.estimateValue}}</h1>
+    {% endif %}
+    {%if av.realValue %}
+    <h1>Valor real: {{ av.estimateValue}}</h1>
+    {% endif %}
+    {%if av.e %}
+    <h1>Error: {{ av.e}}</h1>
+    {% endif %}
+    {%if av.er100 %}
+    <h1>Error relativo porcentual: {{ av.er100}}</h1>
+    {% endif %}
+    <!--Unidad 4: Integracion-->
+
+    {%if av.integral %}
+    <h1>Integral: {{ av.integral}}</h1>
+    {% endif %}
+    {%if av.respuesta %}
+    <h1>Resultado: {{ av.respuesta}}</h1>
+    {% endif %}
+  </div>
+  <script src="{% static 'Calculadora/scripts/graficar.js'%}"></script>
+
+  <script>
+    var MQ = MathQuill.getInterface(2);
+    var problemSpan = document.getElementById('problem');
+    MQ.StaticMath(problemSpan);
+
+    var MQ2 = MathQuill.getInterface(2);
+    var problemSpan2 = document.getElementById('problem2');
+    MQ2.StaticMath(problemSpan2);
+  </script>
+</body>
+
+</html>

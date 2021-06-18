@@ -1,0 +1,19 @@
+{% extends "calculadora.html" %}
+
+{% block title %} Método de Muller {% endblock %}
+
+{% block head %}
+Método de Muller
+{% endblock %}
+
+{% block content %}
+<p>Valor X0</p><input id="val1" name="valor1" type="text" required></input>
+<p>Valor X1</p><input id="val2" name="valor2" type="text" required></input>
+
+{% endblock %}
+{% block content2 %}
+<p>Valor X2</p><input id="val3" name="valor3" type="text" required></input>
+<p>Cifras significativas</p><input id="cifras" name="cifras" type="text" required></input>
+{% endblock %}
+
+{% block tipo %}muller{% endblock %}

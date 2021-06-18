@@ -1,0 +1,24 @@
+#titulo{
+    color: white;
+    text-align: center;
+    margin-top: 2%;
+}
+.txt-white{
+    color: white;
+}
+#invisible{
+    position: fixed;
+}
+p{
+    color: white;
+}
+h1{
+    color: white;
+}
+.contenedor{
+    margin: 1%;
+}
+
+table{
+    color: white;
+}

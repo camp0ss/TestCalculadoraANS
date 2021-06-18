@@ -1,0 +1,17 @@
+{% extends "calculadora.html" %}
+
+{% block title %} Método de la Bisección {% endblock %}
+
+{% block head %}
+Método de la Bisección
+{% endblock %}
+
+{% block content %}
+<p>Valor inicial</p><input id="val1" name="valorI" type="text" required></input>
+<span id="pantalla2" class="editor" style="background:#fff" required></span>
+
+<p>Valor final</p><input id="val2" name="valorF" type="text" required></input>
+<p>Cifras significativas</p><input id="val2" name="cifras" type="text" required></input>
+{% endblock %}
+
+{% block tipo %}biseccion{% endblock %}

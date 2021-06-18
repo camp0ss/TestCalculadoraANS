@@ -1,0 +1,310 @@
+{% load static %}
+
+<html>
+
+<head>
+	<meta charset="utf8">
+	<title>{% block title %} {% endblock %}</title>
+	<link rel="stylesheet" href="{% static 'Calculadora/styles/keyboard-style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Calculadora/mathquill/mathquill.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Calculadora/styles/style.css' %}">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+	<script type="text/javascript" src="{% static 'Calculadora/scripts/jQuery v3.1.1.js' %}"></script>
+	<script type="text/javascript" src="{% static 'Calculadora/mathquill/mathquill.js' %}"></script>
+	<script type="text/javascript" src="{% static 'Calculadora/scripts/table.js' %}"></script>
+
+	<script src="{% static 'Calculadora/scripts/bootstrap.min.js'%}"></script>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	{% include "navBar.html" %}
+
+	<div>
+		<h1 id="titulo">{% block head %} {% endblock %} </h1>
+	</div>
+	<!--
+		Estilo de la calculadora 
+	-->
+
+	<form action="/solve/" method="GET">
+		<table>
+			<tr id="invisible" style="display: none;">
+				<td colspan="8">
+					<code id="codigo" style="padding:2%;"></code><br><br>
+				</td>
+			</tr>
+			<tr>
+				<td>
+						<div>
+							<p style="display: inline-block;">Forma de ingresar los datos: </p>
+							<select style="display: inline-block;" name="opcion" id="opciones">
+								<option value="1" selected>Función</option>
+								<option value="2">Tabla</option>
+							</select>
+						</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="5">
+
+					<div id="deshabilitado">
+						<p>Funcion:</p>
+						<span id="pantalla" class="editor" style="background:#fff"></span>
+						<p style="display: inline-block;">Columnas</p>
+						<input style="display: inline-block;" type="text" id="cols1" name="cols1"> <br />
+						<input type="hidden" style="display: inline-block;" type="text" id="rows1" name="rows1"
+							value="1"><br>
+						<input type="button" id="enviar" value="crear tabla" onclick="crear()" />
+						<input type="button" id="limpiar" value="Limpiar" onclick="crear2()" />
+					</div>
+					<div id="deshabilitado2" style="display: none;">
+						<p style="display: inline-block;">Columnas</p>
+						<input style="display: inline-block;" type="text" id="cols" name="cols"> <br />
+						<p type="hidden" style="display: inline-block;">Filas</p>
+						<input type="hidden" style="display: inline-block;" type="text" id="rows" name="rows"
+							value="2"><br>
+						<input type="button" id="enviar" value="crear tabla" onclick="crear()" />
+						<input type="button" id="limpiar" value="Limpiar" onclick="crear2()" />
+					</div>
+				</td>
+				<td colspan='3'>
+
+					<p>Punto a evaluar:</p><input type="text" name="puntoEvaluar" />
+
+					<span type="hidden" type="text" id="codigo" name="funcion" value="2"
+						style='padding:2%;'></span><br><br>
+					<input id="aver" name="funcion" type="text" value="aver">
+					<input type="hidden" id="aver2" name="tipo" type="text" value="lagrange">
+					<input type="submit" value="Resolver">
+
+				</td>
+			</tr>
+
+		</table>
+
+		<div id="resultado"></div>
+	</form>
+		<table id="deshabilitado3">
+			<!-- 
+                Primera fila de la calculadora de ANS 135
+            -->
+			<tr class="fila-estilo">
+				<td><button class="form-control" onClick="insertar('(')">(</button></td>
+				<td><button class="form-control" onClick="insertar(')')">)</button></td>
+				<td>
+					<button class="form-control" onClick="insertar('/')">
+						<img src="{% static 'Calculadora/images/fraccion.png'%}" width="40px">
+					</button>
+				</td>
+				<td>
+					<button class="form-control" onClick="insertar('^2')">
+						<img src="{% static 'Calculadora/images/cuadrado.png'%}" width="40px">
+					</button>
+				</td>
+				<td>
+					<button class="form-control" onClick="insertar('^3')">
+						<img src="{% static 'Calculadora/images/tercera.png'%}" width="40px">
+					</button>
+				</td>
+				<td><button class="form-control" onClick="insertar('sen\\left(\\right)')">sen</button></td>
+				<td><button class="form-control" onClick="insertar('\\cos\\left(\\right)')">cos</button></td>
+				<td><button class="form-control" onClick="insertar('\\tan\\left(\\right)')">tan</button></td>
+			</tr>
+			<!-- 
+                Segunda fila de la calculadora de ANS 135
+            -->
+			<tr class="fila-estilo">
+				<td><button class="form-control" onClick="insertar('[')">[</button></td>
+				<td><button class="form-control" onClick="insertar(']')">]</button></td>
+				<td><button class="form-control" onClick="insertar('\\pi')">&pi;</button></td>
+				<td>
+					<button class="form-control" onClick="insertar('^')">
+						<img src="{% static 'Calculadora/images/potencia.png'%}" width="40px">
+					</button>
+				</td>
+				<td>
+					<button class="form-control" onClick="insertar('\\vec')">
+						<img src="{% static 'Calculadora/images/absoluto.png'%}" width="40px">
+					</button>
+				</td>
+				<td><button class="form-control" onClick="insertar('\\csc\\left(\\right)')">csc</button></td>
+				<td><button class="form-control" onClick="insertar('\\sec\\left(\\right)')">sec</button></td>
+				<td><button class="form-control" onClick="insertar('\\cot\\left(\\right)')">cot</button></td>
+			</tr>
+			<!-- 
+                Tercera fila de la calculadora de ANS 135
+            -->
+			<tr class="fila-estilo">
+				<td><button class="form-control" onClick="insertar('+')">+</button></td>
+				<td>
+					<button class="form-control" onClick="insertar('-')">
+						<img src="{% static 'Calculadora/images/resta.png'%}" width="40px">
+					</button>
+				</td>
+				<td>
+					<button class="form-control" onClick="insertar('i')">
+						<img src="{% static 'Calculadora/images/imaginario.png'%}" width="40px">
+					</button>
+				</td>
+				<td>
+					<button class="form-control" onClick="insertar('\\sqrt')">
+						<img src="{% static 'Calculadora/images/raiz2.png'%}" width="40px">
+					</button>
+				</td>
+				<td>
+					<button class="form-control" onClick="insertar('\\nthroot')">
+						<img src="{% static 'Calculadora/images/raiz.png'%}" width="40px">
+					</button>
+				</td>
+				<td><button class="form-control" onClick="insertar('sen^{-1}\\left(\\right)')">sen<sup>-1</sup></button>
+				</td>
+				<td><button class="form-control" onClick="insertar('\\cos^{-1}\\left(\\right)')">cos<sup>-1</sup></a>
+				</td>
+				<td><button class="form-control" onClick="insertar('\\tan^{-1}\\left(\\right)')">tan<sup>-1</sup></a>
+				</td>
+			</tr>
+			<!-- 
+                Cuarta fila de la calculadora de ANS 135
+            -->
+			<tr class="fila-estilo">
+				<td>
+					<button class="form-control" onClick="insertar('*')">
+						<img src="{% static 'Calculadora/images/multiplicacion.png'%}" width="40px">
+					</button>
+				</td>
+				<td>
+					<button class="form-control" onClick="insertar('\div')">
+						<img src="{% static 'Calculadora/images/division.png'%}" width="40px">
+					</button>
+				</td>
+				<td><button class="form-control" onClick="insertar('\\theta')">&theta;</button></td>
+				<td><button class="form-control" onClick="insertar('e')"><i>e</i></button></td>
+				<td><button class="form-control" onClick="insertar('\\ln\\left(\\right)')">ln</button></td>
+				<td><button class="form-control" onClick="insertar('\\csc^{-1}\\left(\\right)')">csc<sup>-1</sup></a>
+				</td>
+				<td><button class="form-control"
+						onClick="insertar('\\sec^{-1}\\left(\\right)')">sec<sup>-1</sup></button>
+				</td>
+				<td><button class="form-control" onClick="insertar('\\cot^{-1}\\left(\\right)')">cot<sup>-1</sup></a>
+				</td>
+			</tr>
+			<!-- 
+                Quinta fila de la calculadora de ANS 135
+            -->
+			<tr class="fila-estilo">
+				<td>
+					<button class="form-control" onClick="insertar('.')">
+						<img src="{% static 'Calculadora/images/punto.png'%}" width="40px">
+					</button>
+				</td>
+				<td><button class="form-control" onClick="insertar('=')">=</button></td>
+				<td><button class="form-control" title="Escalón unitario"
+						onClick="insertar('U\\left(\\right)')">U</button>
+				</td>
+				<td>
+					<button class="form-control" data-toggle="modal" data-target="#myModal">
+						<img src="{% static 'Calculadora/images/texto.png'%}" width="40px">
+					</button>
+				</td>
+				<td colspan="2"><input type="button" class="form-control" onclick="borrar()" value="Borrar"></td>
+				<!--<td colspan="2"><input type="button" class="form-control" onclick="copiar('codigo')" value="Copiar"></td>-->
+				<td colspan="2"><input type="button" class="form-control" onclick="copiar('codigo')" value="Resolver">
+				</td>
+			</tr>
+		</table>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog" style="text-align:center">
+		<div class="modal-dialog modal-sm">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Texto en pantalla</h4>
+				</div>
+				<div class="modal-body">
+					<p><input type="radio" name="texto-size" onclick="textoSize('pequeño')"> Pequeño</p>
+					<p><input type="radio" name="texto-size" onclick="textoSize('mediano')"> Mediano</p>
+					<p><input type="radio" name="texto-size" onclick="textoSize('grande')"> Grande</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="{% static 'Calculadora/scripts/keyboard-functions.js'%}"></script>
+
+	<script>
+		let opcion = document.getElementById("opciones")
+		let caja = document.getElementById("deshabilitado")
+		let caja2 = document.getElementById("deshabilitado2")
+		let caja3 = document.getElementById("deshabilitado3")
+
+		opcion.addEventListener("change", () => {
+			let elementoElegido = opcion.options[opcion.selectedIndex].value
+			if (elementoElegido === "2") {
+				caja.style.display = "none"
+				caja2.style.display = ""
+				caja3.style.display = "none"
+				crear2();
+
+			} else {
+				caja.style.display = ""
+				caja2.style.display = "none"
+				caja3.style.display = ""
+				crear2();
+			}
+		})
+
+
+		function crear() {
+			var aver = document.getElementById("opciones").value
+			console.log(aver);
+			if (aver == "1") {
+				var col = document.getElementById("cols1").value;
+				var filas = document.getElementById("rows1").value;
+				console.log("unos")
+
+			} else if (aver == "2") {
+				var col = document.getElementById("cols").value;
+				var filas = document.getElementById("rows").value;
+				console.log("dos")
+			}
+			console.log("col:" + col + " filas" + filas)
+
+			var tabla = "<table border=\"0\">";
+
+			tabla += "<tr><td></td>";
+			for (j = 0; j < col; j++) {
+				tabla += "<td><p>" + (j + 1) + "</p></td>";
+			}
+			tabla += "</tr>";
+
+			for (i = 0; i < filas; i++) {
+				tabla += "<tr>";
+				tabla += "<td><p>" + (i + 1) + "</p></td>";
+				for (j = 0; j < col; j++) {
+					tabla += "<td>" + "<input type=\"text\" size=\"1\" name=\"" + i + "_" + j + "\">" + "</td>";
+				}
+				tabla += "</tr>";
+			}
+			tabla += "</table>";
+			document.getElementById("resultado").innerHTML = tabla;
+		}
+
+		function crear2() {
+			document.getElementById("resultado").innerHTML = "";
+		}
+	</script>
+</body>
+
+</html>
