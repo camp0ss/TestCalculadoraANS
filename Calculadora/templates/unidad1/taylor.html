@@ -1,17 +1,68 @@
-{% extends "calculadora.html" %}
+{% load static %}
 
-{% block title %} Series de Taylor {% endblock %}
+<html>
 
-{% block head %}
-Método de la Bisección
-{% endblock %}
+<head>
+    <meta charset="utf8">
+    <title>Series de Taylor</title>
+    <link rel="stylesheet" href="{% static 'Calculadora/styles/keyboard-style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'Calculadora/mathquill/mathquill.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'Calculadora/styles/style.css' %}">
 
-{% block content %}
-<p>Valor inicial</p><input id="val1" name="valorI" type="text" required></input>
-<span id="pantalla2" class="editor" style="background:#fff" required></span>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-<p>Valor final</p><input id="val2" name="valorF" type="text" required></input>
-<p>Cifras significativas</p><input id="val2" name="cifras" type="text" required></input>
-{% endblock %}
+    <script type="text/javascript" src="{% static 'Calculadora/scripts/jQuery v3.1.1.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Calculadora/mathquill/mathquill.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Calculadora/scripts/table.js' %}"></script>
 
-{% block tipo %}biseccion{% endblock %}
+    <script src="{% static 'Calculadora/scripts/bootstrap.min.js'%}"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    {% include "navBar.html" %}
+    <div>
+        <h1 id="titulo">Series de Taylor</h1>
+    </div>
+    <form action="/solve/" method="GET">
+        <table>
+            <tr>
+                <td colspan="3">
+                    <div style="margin-left: auto;margin-right: auto;">
+                        <p style="display: inline-block;">Método Serie de Taylor: </p>
+                        <select style="display: inline-block;" name="opcion" id="opciones">
+                            <option value="1" selected>ln(e+x)</option>
+                            <option value="2">e^x²</option>
+                            <option value="3">sen(x)</option>
+                            <option value="4">cos(x)</option>
+                            <option value="5">e^x</option>
+                            <option value="6">sh(x)</option>
+                            <option value="7">ch(x)</option>
+                            <option value="8">arcsen(x)</option>
+                            <option value="9">ln(1+x)</option>
+                            <option value="10">1/(1+x²)</option>
+                            <option value="11">arctg(x)</option>
+                        </select>
+                </td>
+                </div>
+            </tr>
+            <tr width="100">
+                <td>
+                    <p>Valor de x</p><input id="val1" name="valorX" type="valorX" required></input>
+                </td>
+                <td>
+                    <p>Cifras significativas</p><input id="val2" name="cifras" type="text" required></input>
+                </td>
+                <td>
+                    <input type="hidden" id="aver2" name="tipo" type="text" value="seriesTaylorModel">
+                    <input type="submit" value="Resolver">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

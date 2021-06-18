@@ -94,6 +94,17 @@
     {%if av.respuesta %}
     <h1>Resultado: {{ av.respuesta}}</h1>
     {% endif %}
+
+    <!--Unidad 5:-->
+
+    {%if av.Valor_metodo_predictor %}
+    <h1>Valor metodo predictor: {{ av.Valor_metodo_predictor}}</h1>
+    {% endif %}
+    {%if av.Valor_metodo_corrector %}
+    <h1>Valor metodo corrector: {{ av.Valor_metodo_corrector}}</h1>
+    {% endif %}
+
+    
   </div>
   <script src="{% static 'Calculadora/scripts/graficar.js'%}"></script>
 

@@ -1,0 +1,53 @@
+{% extends "calculadora.html" %}
+
+{% block title %} Método multipasos {% endblock %}
+
+{% block head %}
+Método multipasos
+{% endblock %}
+
+{% block opciones %}
+<div>
+    <p style="display: inline-block;">Método inicializador: </p>
+    <select style="display: inline-block;" name="inicializador" id="opciones">
+        <option value="1" selected>Euler modificado</option>
+        <option value="2">Runge-kutta de cuarto orden</option>
+    </select>
+</div>
+<div>
+    <p style="display: inline-block;">Método predictor de Adams Bashforth: </p>
+    <select style="display: inline-block;" name="predictor" id="opciones">
+        <option value="1" selected>De dos pasos</option>
+        <option value="2">De tres pasos</option>
+        <option value="3">De cuatro pasos</option>
+    </select>
+</div>
+<div>
+    <p style="display: inline-block;">Método corrector de Adams Moulton: </p>
+    <select style="display: inline-block;" name="corrector" id="opciones">
+        <option value="1" selected>De un paso</option>
+        <option value="2">De tres pasos</option>
+        <option value="3">De cuatro pasos</option>
+    </select>
+</div>
+{% endblock %}
+
+{% block content %}
+<p>x inicial:</p><input id="xInicial" name="xInicial" type="text" required></input>
+<p>y inicial:</p><input id="yInicial" name="yInicial" type="text" required></input>
+{% endblock %}
+
+{% block content2 %}
+<p>Intervalo:</p><input id="valorH" name="valorh" type="text" required></input>
+<p>Punto a evaluar:</p><input id="punto" name="punto" type="text" required></input>
+{% endblock %}
+
+{% block content3 %}
+<p>Nivel:</p><input id="nivel" name="nivel" type="text" required></input>
+{% endblock %}
+
+{% block etiqueta %}
+style="width: 0%;"
+{% endblock %}
+
+{% block tipo %}multipasos{% endblock %}

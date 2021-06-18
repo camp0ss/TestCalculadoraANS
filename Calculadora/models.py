@@ -1,12 +1,39 @@
+from .clases.unidad1 import serieDeTaylor
 from .clases.unidad2 import  biseccion, falsaPosicion, muller, newton, puntofijo, secante
 from .clases.unidad3 import lagrange, newton_divididas, newton_recursivo, hermite
 from .clases.unidad4 import integracion, rosemberg, finitas, richardson
-from .clases.unidad5 import euler, runge, taylor, multipasos
+from .clases.unidad5 import euler, runge, taylor, multipasosI
 
 import pandas as pd
 
 #Uso de clases de archivos python 
 
+#Unidad 1:
+def seriesTaylorModel(valor, cifras, opcion):
+    clase = serieDeTaylor.seriesTaylor(valor, cifras)
+    if opcion ==1:
+        return clase.EjercicioUno
+    if opcion ==2:
+        return clase.EjercicioDos
+    if opcion ==3:
+        return clase.EjercicioTres
+    if opcion ==4:
+        return clase.EjercicioCuatro
+    if opcion ==5:
+        return clase.EjercicioCinco
+    if opcion ==6:
+        return clase.EjercicioSeis
+    if opcion ==7:
+        return clase.EjercicioSiete
+    if opcion ==8:
+        return clase.EjercicioOcho
+    if opcion ==9:
+        return clase.EjercicioNueve
+    if opcion ==10:
+        return clase.EjercicioDiez
+    if opcion ==11:
+        return clase.EjercicioOnce
+        
 #Unidad 2:
 def biseccionModel(a,b,funcion,cifras):
     clase = biseccion.Biseccion
@@ -171,3 +198,7 @@ def rungeModel(funcion,xo,yo,xlim,intervalo,opcion):
         return clase.rungeTres
     if opcion ==3:
         return clase.rungeCuatro
+
+def multipasosModel(inicializador,predictor,corrector,funcion,xo,yo,xlim,intervalo,nivel):
+    clase = multipasosI.MultiPasos(inicializador,predictor,corrector,funcion,xo,yo,xlim,intervalo,nivel)
+    return clase.multipasos

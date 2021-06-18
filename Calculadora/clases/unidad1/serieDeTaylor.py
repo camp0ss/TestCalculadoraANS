@@ -1,24 +1,26 @@
 import pandas as pd
 from math import exp, factorial
-
+#calculo del error para indicar cuando debe parar de evaluar
 class Error:
     def errors(v):
         cifras = v
         es = 0.5*(10**(2-cifras))
         return es
 
-class EjercicioUno:
+class seriesTaylor:
+    #inicializa los datos a ocupar, el valor a evaluar y las cifras significativas
     def __init__(self, valor, cifras):
         self.x = valor
         self.cifras = cifras
-    
-    def evaluacion(self):
+    #ln(e+x)
+    #realiza la evaluacion en la serie de taylor correspondiente
+    def EjercicioUno(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
         n = 1
         ant = 1
-
+        #los datos iterados se guardaran en una lista
         itera = list()
         xr = list()
         err = list()
@@ -27,6 +29,7 @@ class EjercicioUno:
             for i in range(1,(n+1)):
                 signo = (-1)**(i+1)
                 f += signo*round((x**i)/(i*exp(i)),10)
+            #se evalua que no se realice una division entre cero, sino sale del bucle
             try:
                 ea = round(abs((f-ant)/f)*100,10)
             except ZeroDivisionError:
@@ -36,25 +39,21 @@ class EjercicioUno:
             err.append(ea)
             n +=1
             ant = f
-        
+        #los datos guardados en las listas se pasan a una tabla para generar la salida
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"ln(e+x)"}
         return salida
-        
-class EjercicioDos:
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
-    
-    def  evaluacion(self):
+#e^(x^2)        
+    #realiza la evaluacion en la serie de taylor correspondiente
+    def  EjercicioDos(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
         n = 1
         ant = 1
-
+        #los datos iterados se guardaran en una lista
         itera = list()
         xr = list()
         err = list()
@@ -62,6 +61,7 @@ class EjercicioDos:
             f=1
             for i in range(1,n+1):
                 f += round((x**(2*i))/factorial(i),10)
+            #se evalua que no se realice una division entre cero, sino sale del bucle
             try:
                 ea = round(abs((f-ant)/f)*100,10)
             except ZeroDivisionError:
@@ -71,25 +71,21 @@ class EjercicioDos:
             err.append(ea)
             ant = f
             n +=1
-        
+        #los datos guardados en las listas se pasan a una tabla para generar la salida
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"e^(x²)  "}
         return salida
-
-class EjercicioTres:
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
-
-    def evaluacion(self):
+#sen(x)
+    #realiza la evaluacion en la serie de taylor correspondiente
+    def EjercicioTres(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
         n = 1
         ant = x
-
+        #los datos iterados se guardaran en una lista
         itera = list()
         xr = list()
         err = list()
@@ -98,6 +94,7 @@ class EjercicioTres:
             for i in range(1,(n+1)):
                 signo = (-1)**i
                 f += signo*round((x**((2*i)+1))/factorial((2*i)+1),10)
+            #se evalua que no se realice una division entre cero, sino sale del bucle
             try:
                 ea = round(abs((f-ant)/f)*100,10)
             except ZeroDivisionError:
@@ -107,25 +104,21 @@ class EjercicioTres:
             err.append(ea)
             ant = f
             n +=1
-
+        #los datos guardados en las listas se pasan a una tabla para generar la salida
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"sen(x)"}
         return salida
-
-class EjercicioCuatro:
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
-
-    def evaluacion(self):
+#cos(x)
+    #realiza la evaluacion en la serie de taylor correspondiente
+    def EjercicioCuatro(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
         n = 1
         ant = 1
-
+        #los datos iterados se guardaran en una lista
         itera = list()
         xr = list()
         err = list()
@@ -134,6 +127,7 @@ class EjercicioCuatro:
             for i in range(1,(n+1)):
                 signo = (-1)**i
                 f += signo*round((x**(2*i))/factorial(2*i),10)
+            #se evalua que no se realice una division entre cero, sino sale del bucle
             try:
                 ea = round(abs((f-ant)/f)*100,10)
             except ZeroDivisionError:
@@ -143,25 +137,21 @@ class EjercicioCuatro:
             err.append(ea)
             ant = f
             n +=1
-        
+        #los datos guardados en las listas se pasan a una tabla para generar la salida
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"cos(x)"}
         return salida
-
-class EjercicioCinco:
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
-    
-    def evaluacion(self):
+#e^x
+    #realiza la evaluacion en la serie de taylor correspondiente
+    def EjercicioCinco(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
         n = 1
         ant = 1
-
+        #los datos iterados se guardaran en una lista
         itera = list()
         xr = list()
         err = list()
@@ -169,6 +159,7 @@ class EjercicioCinco:
             f = 1
             for i in range(1,(n+1)):
                 f += round((x**i)/factorial(i),10)
+            #se evalua que no se realice una division entre cero, sino sale del bucle
             try:
                 ea = round(abs((f-ant)/f)*100,10)
             except ZeroDivisionError:
@@ -178,25 +169,21 @@ class EjercicioCinco:
             err.append(ea)
             ant = f
             n += 1
-
+        #los datos guardados en las listas se pasan a una tabla para generar la salida
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"e^x"}
         return salida
-
-class EjercicioSeis:
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
-
-    def evaluacion(self):
+#sh(x)
+    #realiza la evaluacion en la serie de taylor correspondiente
+    def EjercicioSeis(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
         n = 1
         ant = x
-
+        #los datos iterados se guardaran en una lista
         itera = list()
         xr = list()
         err = list()
@@ -204,6 +191,7 @@ class EjercicioSeis:
             f = x
             for i in range(1,(n+1)):
                 f += round((x**((2*i)+1))/factorial((2*i)+1),10)
+            #se evalua que no se realice una division entre cero, sino sale del bucle
             try:
                 ea = round(abs((f-ant)/f)*100,10)
             except ZeroDivisionError:
@@ -213,25 +201,21 @@ class EjercicioSeis:
             err.append(ea)
             ant = f
             n += 1
-
+        #los datos guardados en las listas se pasan a una tabla para generar la salida
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"sh(x)"}
         return salida
-
-class EjercicioSiete:
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
-
-    def evaluacion(self):
+#ch(x)
+    #realiza la evaluacion en la serie de taylor correspondiente
+    def EjercicioSiete(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
         n = 1
         ant = 1
-
+        #los datos iterados se guardaran en una lista
         itera = list()
         xr = list()
         err = list()
@@ -239,6 +223,7 @@ class EjercicioSiete:
             f = 1
             for i in range(1,(n+1)):
                 f += round((x**(2*i))/factorial(2*i),10)
+            #se evalua que no se realice una division entre cero, sino sale del bucle
             try:
                 ea = round(abs((f-ant)/f)*100,10)
             except ZeroDivisionError:
@@ -248,26 +233,22 @@ class EjercicioSiete:
             err.append(ea)
             ant = f
             n += 1
-
+        #los datos guardados en las listas se pasan a una tabla para generar la salida
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"ch(x)"}
         return salida
-
-class EjercicioOcho:
+#arcsen(x)
     #x debe estar entre los valores de -1 a 1, excluyendo estos valores
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
-
-    def evaluacion(self):
+    #realiza la evaluacion en la serie de taylor correspondiente
+    def EjercicioOcho(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
         n = 1
         ant = x
-
+        #los datos iterados se guardaran en una lista
         itera = list()
         xr = list()
         err = list()
@@ -275,6 +256,7 @@ class EjercicioOcho:
             f = x
             for i in range(1,(1+n)):
                 f += round((factorial(2*i)/((2**i)*factorial(i))**2)*(x**(2*i+1)/(2*i+1)),10)
+            #se evalua que no se realice una division entre cero, sino sale del bucle
             try:
                 ea = round(abs((f-ant)/f)*100,10)
             except ZeroDivisionError:
@@ -284,26 +266,22 @@ class EjercicioOcho:
             err.append(ea)  
             ant = f
             n += 1
-
+        #los datos guardados en las listas se pasan a una tabla para generar la salida
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"arcsen(x)"}
         return salida
-
-class EjercicioNueve:
+#ln(1+x)
     #x debe estar entre los valores de -1 a 1, excluyendo estos valores
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
-
-    def evaluacion(self):
+    #realiza la evaluacion en la serie de taylor correspondiente
+    def EjercicioNueve(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
         n = 2
         ant = x
-
+        #los datos iterados se guardaran en una lista
         itera = list()
         xr = list()
         err = list()
@@ -311,6 +289,7 @@ class EjercicioNueve:
             f = 0
             for i in range(1,(1+n)):
                 f += round((((-1)**(i-1))/i)*(x**i),10)
+            #se evalua que no se realice una division entre cero, sino sale del bucle
             try:
                 ea = round(abs((f-ant)/f)*100,10)
             except ZeroDivisionError:
@@ -320,26 +299,22 @@ class EjercicioNueve:
             err.append(ea)  
             ant = f
             n += 1
-
+        #los datos guardados en las listas se pasan a una tabla para generar la salida
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"ln(1+x)"}
         return salida
-
-class EjercicioDiez:
+#1/(1+x^2)
     #x debe estar entre los valores de -1 a 1, excluyendo estos valores
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
-
-    def evaluacion(self):
+    #realiza la evaluacion en la serie de taylor correspondiente
+    def EjercicioDiez(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
         n = 1
         ant = 1
-
+        #los datos iterados se guardaran en una lista
         itera = list()
         xr = list()
         err = list()
@@ -347,6 +322,7 @@ class EjercicioDiez:
             f = 1
             for i in range(1,(1+n)):
                 f += round((((-1)**i)*(x**(2*i))),10)
+            #se evalua que no se realice una division entre cero, sino sale del bucle
             try:
                 ea = round(abs((f-ant)/f)*100,10)
             except ZeroDivisionError:
@@ -356,26 +332,23 @@ class EjercicioDiez:
             err.append(ea)  
             ant = f
             n += 1
-
+        #los datos guardados en las listas se pasan a una tabla para generar la salida
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"1/(1+x^2)"}
         return salida
-
-class EjercicioOnce:
+#arctg(x)
+    #inicializa los datos a ocupar, el valor a evaluar y las cifras significativas
     #x debe estar entre los valores de -1 a 1, excluyendo estos valores
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
-
-    def evaluacion(self):
+    #realiza la evaluacion en la serie de taylor correspondiente
+    def EjercicioOnce(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
         n = 1
         ant = x
-
+        #los datos iterados se guardaran en una lista
         itera = list()
         xr = list()
         err = list()
@@ -383,6 +356,7 @@ class EjercicioOnce:
             f = x
             for i in range(1,(1+n)):
                 f += round((((-1)**i)*(x**(2*i+1)))/(2*x+1),10)
+            #se evalua que no se realice una division entre cero, sino sale del bucle
             try:
                 ea = round(abs((f-ant)/f)*100,10)
             except ZeroDivisionError:
@@ -392,9 +366,9 @@ class EjercicioOnce:
             err.append(ea)  
             ant = f
             n += 1
-
+        #los datos guardados en las listas se pasan a una tabla para generar la salida
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"arctg(x)"}
         return salida

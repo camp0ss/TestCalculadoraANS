@@ -4,7 +4,7 @@ from django.shortcuts import render
 from .models import biseccionModel, falsaModel, hermiteModel, mullerModel, newtonModel, puntoModel, secanteModel, taylorModel
 from .models import lagran, divididasModel, polNewtonModel,hermiteModel
 from .models import diferenciacionModel, trapecioModel, trapecioCompuestoModel, simpsonTercioModel, simpsonTercioCompuestoModel, simpsonOctavoModel, simpsonOctavoCompuestoModel, simpsonTercioAdaptativoModel, richardsonModel, rosembergModel
-from .models import eulerModel, taylorModel, rungeModel
+from .models import eulerModel, taylorModel, rungeModel, seriesTaylorModel, multipasosModel
 import pandas as pd
 from math import pi
 from sympy import simplify, separatevars
@@ -68,8 +68,8 @@ def rosemberg(request):
     return render(request, "unidad4/rosemberg.html")
 
 #unidad 5:
-def adaptativo(request):
-    return render(request, "unidad5/adaptativo.html")
+def multipasos(request):
+    return render(request, "unidad5/multipasos.html")
 
 def euler(request):
     return render(request, "unidad5/euler.html")
@@ -82,9 +82,17 @@ def taylor(request):
 
 #Vista donde se extraen y se envian datos
 def solve(request):
+    
+    #Unidad 1:
+    if request.GET["tipo"] == "seriesTaylorModel":
+        valorX = float(parse_expr(request.GET["valorX"]))
+        cifras = float(parse_expr(request.GET["cifras"]))
+        opcion = int(request.GET["opcion"])
+        
+        av = seriesTaylorModel(valorX,cifras, opcion) 
 
     #Unidad 2:
-    if request.GET["tipo"] == "biseccion":
+    elif request.GET["tipo"] == "biseccion":
         func = parse_expr(request.GET["funcion"])
         valorI = float(parse_expr(request.GET["valorI"]))
         valorF = float(parse_expr(request.GET["valorF"]))
@@ -316,6 +324,19 @@ def solve(request):
         opcion = int((request.GET["opcion"]))
 
         av = rungeModel(func, xInicial, yInicial, punto, intervalo, opcion)
+
+    elif request.GET["tipo"] == "multipasos":
+        func = str(request.GET["funcion"])
+        xInicial = float(parse_expr(request.GET["xInicial"]))
+        yInicial = float(parse_expr(request.GET["yInicial"]))
+        intervalo = float(parse_expr(request.GET["valorh"]))
+        punto = float(parse_expr(request.GET["punto"]))
+        nivel = int(parse_expr(request.GET["nivel"]))
+        inicializador = int((request.GET["inicializador"]))
+        predictor = int((request.GET["predictor"]))
+        corrector = int((request.GET["corrector"]))
+
+        av = multipasosModel(inicializador,predictor,corrector,func, xInicial, yInicial, punto, intervalo,nivel)
 
     data = {"av": av,}
     return render(request, "resolver.html", data)

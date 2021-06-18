@@ -18,7 +18,7 @@ from django.urls import path
 from .views import pagina1, solve, biseccion, falsa, punto, newton, secante, muller #unidad 2
 from .views import diffDivididas, hermite, lagrange, polNewton  #unidad 3
 from .views import derivacion, integracion, richardson, rosemberg   #unidad 4
-from .views import adaptativo, euler, runge, taylor #unidad 5
+from .views import multipasos, euler, runge, taylor #unidad 5
 
 #Direcciones web de la pagina
 
@@ -47,7 +47,7 @@ urlpatterns = [
     path("rosemberg/", rosemberg),
 
     #unidad 5:
-    path("adaptativo/", adaptativo),
+    path("multipasos/", multipasos),
     path("euler/", euler),
     path("runge/", runge),
     path("taylor/", taylor),
