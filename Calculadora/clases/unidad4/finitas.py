@@ -7,11 +7,14 @@ from sympy import *
 x = sp.Symbol('x')
 
 def ff(func, evaluator): 
+    #sirve para evaluar en la funcion que se recibe.
     solution = func.evalf(subs={"x":evaluator, "e" : math.e})
     return solution
 
 def error_calculator_fourth(func,estimate_value, searched_value):
-    real_value = sp.diff(func,x,4)
+    #es usada en la cuarta derivada, recibe la funcio, el valor estimado encontrado por las diferencias finitas y el punto en que se desea evaluar
+    #devuelve un diccionario con la respuesta
+    real_value = sp.diff(func,x,4)  #codigo de sympy para calcular la cuarta derivada y asi poder calcular el valor real.
     real_value.expand()
     real_value = real_value.subs(x, searched_value)
     e = round(abs(real_value-estimate_value),7)
@@ -22,7 +25,8 @@ def error_calculator_fourth(func,estimate_value, searched_value):
 
 
 def error_calculator(func,estimate_value, searched_value, method_name):
-    real_value = sp.diff(func,x,1)
+    #recibe la funcion, el valor calculado con las diferencias finitas, el punto a evaluar y el nombre del metodo que se utilizo.
+    real_value = sp.diff(func,x,1) #derivada con sympy para poder encontrar el valor real
     real_value.expand()
     real_value = real_value.subs(x, searched_value)
     e = abs(round(real_value-estimate_value,7))
@@ -30,13 +34,13 @@ def error_calculator(func,estimate_value, searched_value, method_name):
     er = round(abs(e/real_value),7)
     er100 = round(abs(((e/real_value)*100)),7)
     errors = {"estimateValue": estimate_value , "realValue": real_value ,"e" : e ,"er" : er , "er100" : er100, "funcion":rcode(func), "metodo":method_name}
-    return errors
+    return errors #devuelve un diccionario con el resultado, metodo usado, errores y el valor real.
 
 
 class Finitas:
     def __init__(self, f,arg_h,p):
             #f = funcion
-            #h = h o espaciado
+            #arg_h = h o espaciado
             #p = punto a evaluar en la derivada uwu
 
             self.funcion = f
@@ -45,13 +49,17 @@ class Finitas:
 
 
     def first_forward_diff(self):
+        #primer derivada hacia adelante
         h = self.hx1
         point = self.punto
         func = self.funcion
+        #luego de almacenar los valores en variables locales, hace la formula de la primera diferencia finita hacia adelante
         solution_FDF = (ff(func,(point+h)) - ff(func,(point)))/(h)
         #print("\nSolucion primer diferencia adelante de ",func ," en el punto ",point ," es ", solution_FDF)
+        #usa la funcion error_calculator, para crear un diccionario
         salida = error_calculator(func,solution_FDF, point, "Primera derivada con primer diferencia hacia adelante")
         #print("Errors:", salida ,"\n")
+        #devuelve el diccionario creado por error_calculator
         return salida
 
     def first_backward_diff(self):
