@@ -15,9 +15,9 @@ python3 -m venv envCalculadora
 - Activar entorno virtual
      - GNU/Linux
 ```
-source venv envCalculadora/bin/activate
+source venv envCalculadora/bin/activate 
 ```
-    -Windows
+   - Windows
 ```
 envCalculadora\Scripts\activate.bat
 ```
