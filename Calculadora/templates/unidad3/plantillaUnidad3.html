@@ -195,29 +195,6 @@
 				<td><button class="form-control" onClick="insertar('\\cot^{-1}\\left(\\right)')">cot<sup>-1</sup></a>
 				</td>
 			</tr>
-			<!-- 
-                Quinta fila de la calculadora de ANS 135
-            -->
-			<tr class="fila-estilo">
-				<td>
-					<button class="form-control" onClick="insertar('.')">
-						<img src="{% static 'Calculadora/images/punto.png'%}" width="40px">
-					</button>
-				</td>
-				<td><button class="form-control" onClick="insertar('=')">=</button></td>
-				<td><button class="form-control" title="Escalón unitario"
-						onClick="insertar('U\\left(\\right)')">U</button>
-				</td>
-				<td>
-					<button class="form-control" data-toggle="modal" data-target="#myModal">
-						<img src="{% static 'Calculadora/images/texto.png'%}" width="40px">
-					</button>
-				</td>
-				<td colspan="2"><input type="button" class="form-control" onclick="borrar()" value="Borrar"></td>
-				<!--<td colspan="2"><input type="button" class="form-control" onclick="copiar('codigo')" value="Copiar"></td>-->
-				<td colspan="2"><input type="button" class="form-control" onclick="copiar('codigo')" value="Resolver">
-				</td>
-			</tr>
 		</table>
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog" style="text-align:center">

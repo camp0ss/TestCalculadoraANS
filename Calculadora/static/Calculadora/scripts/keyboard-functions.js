@@ -35,7 +35,7 @@ var mathField = MQ.MathField(mathFieldSpan,
 				}
 
 				if (texto.includes("p%i")) {
-					texto = texto.replaceAll("p%i", "*%pi");
+					texto = texto.replaceAll("p%i", "*pi");
 				}
 				if (texto.includes("pi")) {
 					texto = texto.replaceAll("pi", "*pi");

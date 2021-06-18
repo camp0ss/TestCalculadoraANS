@@ -2,7 +2,7 @@ import math
 import pandas as pd
 from sympy import *
 
-
+#Funcion para calcula el valor de la funcion dada en un punto especifico
 def funcion(a, f, evaluador = "x"):
         av = f.evalf(subs={evaluador:a, "e" : math.e})
         #print("datos a: ",a, "funcion: ",f, "valor: ",av)
@@ -19,12 +19,10 @@ class Trapecio:
     
     def resultado(self):
         integral = (self.limSup - self.limInf)*(funcion(self.limInf,self.func,self.evl)+funcion(self.limSup,self.func,self.evl))/2
-        print(integral)
         salida = {"integral":integral, "funcion":rcode(self.func), "metodo":"Trapecio"} #grafica
         return salida
 
 #trapecio compuesto
-#revisar
 class TrapecioIntervalo:
     def __init__(self, liminf,limsup, intervalo, func, evaluador = "x"):
         self.limInf = liminf
@@ -52,14 +50,12 @@ class TrapecioIntervalo:
         
         sum = 0
         for datos in range(1, len(fXi)-1):
-            sum = sum + fXi[datos] 
+            sum = sum + fXi[datos] #Suma de valores f(xi)
         
         d = {"Iteracion": i,"Xi": Xi,"F(Xi)": fXi}
         resu = pd.DataFrame(d)
-        print(resu)
         integral = (self.limSup - self.limInf)*(funcion(self.limInf,self.func,self.evl)+2*(sum)+funcion(self.limSup,self.func,self.evl))/(2*self.intervalo)
-        print(integral)
-        html = resu.to_html()
+        html = resu.to_html() #Pasar tabla de DataFrame a etiquetas HTML
         salida = {"tabla":html,"integral":integral, "funcion":rcode(self.func), "metodo":"Trapecio Compuesto"}
         return salida
 
@@ -89,10 +85,8 @@ class SimpsonTercio:
         
         d = {"Iteracion": i,"Xi": Xi,"F(Xi)": fXi}
         resu = pd.DataFrame(d)
-        #print(resu)
         integral = (self.limSup - self.limInf)*(funcion(self.limInf,self.func,self.evl)+4*(fXi[1])+funcion(self.limSup,self.func,self.evl))/6
-        #print(integral)
-        html = resu.to_html()
+        html = resu.to_html() #Pasar tabla de DataFrame a etiquetas HTML
         salida = {"integral":integral, "tabla":html,"funcion":rcode(self.func), "metodo":"Simpson 1/3"} #grafica
         return salida
 
@@ -124,11 +118,10 @@ class SimpTercIntervalo:
 
         sum = 0
         for datos in range(1, len(fXi)-1):
-            sum = sum + fXi[datos] 
+            sum = sum + fXi[datos] #Suma de valores f(xi)
         
         d = {"Iteracion": i,"Xi": Xi,"F(Xi)": fXi}
         resu = pd.DataFrame(d)
-        print(resu)
 
         Xmi = list()
         fXmi = list()
@@ -141,11 +134,9 @@ class SimpTercIntervalo:
 
         d2 = {"Xmi": Xmi,"F(Xmi)": fXmi}
         resu2 = pd.DataFrame(d2)
-        print(resu2)
 
         integral = (self.limSup - self.limInf)*(funcion(self.limInf,self.func,self.evl)+4*(sum2)+2*(sum)+funcion(self.limSup,self.func,self.evl))/(6*self.intervalo)
-        print(integral)
-        html = resu.to_html()
+        html = resu.to_html()#Pasar tabla de DataFrame a etiquetas HTML
         salida = {"tabla":html,"integral":integral,"funcion":rcode(self.func), "metodo":"Simpson 1/3 compuesto"}
         return salida
 
@@ -176,11 +167,9 @@ class SimpOctavo:
         
         d = {"Iteracion": i,"Xi": Xi,"F(Xi)": fXi}
         resu = pd.DataFrame(d)
-        print(resu)
 
         integral = (self.limSup - self.limInf)*(fXi[0]+3*fXi[1]+3*fXi[2]+fXi[3])/8
-        print(integral)
-        html = resu.to_html()
+        html = resu.to_html()#Pasar tabla de DataFrame a etiquetas HTML
         salida = {"tabla":html,"integral":integral,"funcion":rcode(self.func), "metodo":"Simpson 3/8"}
         return salida
 
@@ -212,7 +201,7 @@ class SimpOctIntervalo:
 
         sum = 0
         for datos in range(1, len(fXi)-1):
-            sum = sum + fXi[datos] 
+            sum = sum + fXi[datos] #Suma de valores f(xi)
         
         d = {"Iteracion": i,"Xi": Xi,"F(Xi)": fXi}
         resu = pd.DataFrame(d)
@@ -236,12 +225,10 @@ class SimpOctIntervalo:
             
         d2 = {"Subintervalos": sub, "F(sub)":fsub}
         resu2 = pd.DataFrame(d2)
-        print(resu2)
 
         integral = ((self.limSup - self.limInf)/(8*self.intervalo))*(funcion(self.limInf,self.func,self.evl)+3*(sum2)+2*(sum)+funcion(self.limSup,self.func,self.evl))
-        print(integral)
-        html = resu.to_html()
-        html2 = resu2.to_html()
+        html = resu.to_html()#Pasar tabla de DataFrame a etiquetas HTML
+        html2 = resu2.to_html()#Pasar tabla de DataFrame a etiquetas HTML
         salida = {"tabla":html,"tabla2":html2,"integral":integral,"funcion":rcode(self.func), "metodo":"Simpson 3/8 compuesto"}
         return salida
 
@@ -291,8 +278,6 @@ class SimpAdaptativo:
         sPrim.append(aver.resultado()["integral"])
         intervalos = [self.limInf, h, self.limSup]
         box.append(intervalos)
-        #print(sPrim)
-        #print("ajuste 0 :",SimpAdaptativo.ajuste(sPrim[0],sPrim[1],sPrim[2]))
         if SimpAdaptativo.ajuste(sPrim[0],sPrim[1],sPrim[2])>self.tolerancia:
 
             index = 0
@@ -328,14 +313,5 @@ class SimpAdaptativo:
             print(sum)
             return sum
 
-            '''        
-            
-                si = SimpsonTercio(inter[0], inter[1], self.func)
-                sInter.append(aver.resultado()["integral"])
-                aver = SimpsonTercio(inter[0], hi, self.func)
-                sInter.append(aver.resultado()["integral"])
-                aver = SimpsonTercio(hi, inter[1], self.func)
-                sInter.append(aver.resultado()["integral"])
-                print(sInter)'''
 
 

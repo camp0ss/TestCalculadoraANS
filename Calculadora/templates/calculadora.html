@@ -58,7 +58,7 @@
 					{% block content3 %} {% endblock %}
 					<span type="hidden" type="text" id="codigo" name="funcion" value="2"
 						style='padding:2%;'></span><br><br>
-					<input type="hidden" id="aver" name="funcion" type="text" value="aver">
+					<input  id="aver" name="funcion" type="text" value="aver">
 					<input type="hidden" id="aver2" name="tipo" type="text" value="{% block tipo %}{% endblock %}">
 					<input type="submit" value="Resolver">
 				</td>
@@ -168,7 +168,7 @@
 		</tr>
 		<!-- 
                 Quinta fila de la calculadora de ANS 135
-            -->
+            
 		<tr class="fila-estilo">
 			<td>
 				<button class="form-control" onClick="insertar('.')">
@@ -184,9 +184,9 @@
 				</button>
 			</td>
 			<td colspan="2"><input type="button" class="form-control" onclick="borrar()" value="Borrar"></td>
-			<!--<td colspan="2"><input type="button" class="form-control" onclick="copiar('codigo')" value="Copiar"></td>-->
+			<td colspan="2"><input type="button" class="form-control" onclick="copiar('codigo')" value="Copiar"></td>
 			<td colspan="2"><input type="button" class="form-control" onclick="copiar('codigo')" value="Resolver"></td>
-		</tr>
+		</tr>-->
 	</table>
 	</div>
 	<!-- Modal -->

@@ -1,21 +1,23 @@
 import math
+
+from numpy import real
 import sympy as sp
 from sympy import *
 
 x = sp.Symbol('x')
 
 def ff(func, evaluator): 
-    solution = func.evalf(subs={"x":evaluator})
+    solution = func.evalf(subs={"x":evaluator, "e" : math.e})
     return solution
 
 def error_calculator_fourth(func,estimate_value, searched_value):
     real_value = sp.diff(func,x,4)
     real_value.expand()
     real_value = real_value.subs(x, searched_value)
-    e = abs(real_value-estimate_value)
-    er = abs(e/real_value)
-    er100 = abs((e/real_value)*100)
-    errors = {"estimateValue": estimate_value , "realValue": real_value ,"e" : e ,"er" : er , "er100" : er100, "funcion":julia_code(func), "metodo":"Cuarta derivada con primer diferencia hacia adelante"}
+    e = round(abs(real_value-estimate_value),7)
+    er = round(abs(e/real_value),7)
+    er100 = round(abs((e/real_value)*100),7)
+    errors = {"estimateValue": estimate_value , "realValue": real_value ,"e" : e ,"er" : er , "er100" : er100, "funcion":rcode(func), "metodo":"Cuarta derivada con primer diferencia hacia adelante"}
     return errors
 
 
@@ -23,10 +25,11 @@ def error_calculator(func,estimate_value, searched_value, method_name):
     real_value = sp.diff(func,x,1)
     real_value.expand()
     real_value = real_value.subs(x, searched_value)
-    e = abs(real_value-estimate_value)
-    er = abs(e/real_value)
-    er100 = abs((e/real_value)*100)
-    errors = {"estimateValue": estimate_value , "realValue": real_value ,"e" : e ,"er" : er , "er100" : er100, "funcion":julia_code(func), "metodo":method_name}
+    e = abs(round(real_value-estimate_value,7))
+    print(real_value)
+    er = round(abs(e/real_value),7)
+    er100 = round(abs(((e/real_value)*100)),7)
+    errors = {"estimateValue": estimate_value , "realValue": real_value ,"e" : e ,"er" : er , "er100" : er100, "funcion":rcode(func), "metodo":method_name}
     return errors
 
 
