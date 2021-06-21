@@ -27,35 +27,50 @@ class Taylor:
         yo = self.yo
         xfinal = self.x
         n = self.n
-        h = (xfinal-xo)/n
         orden = self.o
-        x = sym.Symbol("x")
-        #calculo de las derivadas de n orden, cada orden almacenada en el vector D
-        D = []
-        for i in range(1,orden):
-            D = D+[sym.Derivative(funcion,x,i).doit()]
-        #calculo de las formulas para cada orden de derivada
-        yk = []
-        yk.append(funcion+D[0])
-        for i in range(1,len(D)):
-            yk.append(yk[i-1]+D[i])
+        if n>0 and xo<xfinal:
+            if orden>1 and type(orden)==int:
+                if type(n)==int:
+                    h = (xfinal-xo)/n
+                    x = sym.Symbol("x")
+                    #calculo de las derivadas de n orden, cada orden almacenada en el vector D
+                    D = []
+                    for i in range(1,orden):
+                        D = D+[sym.Derivative(funcion,x,i).doit()]
+                    #calculo de las formulas para cada orden de derivada
+                    yk = []
+                    yk.append(funcion+D[0])
+                    for i in range(1,len(D)):
+                        yk.append(yk[i-1]+D[i])
         
-        tn = [xo]
-        yn = [yo]
-        #aplicacion del metodo,  tn es para x, yn es para y
-        for i in range(0,n):
-            temp = yn[i]+h*Taylor.evalF(tn[i],yn[i],funcion)
-            for j in range(0,len(yk)):
-                temp += ((h**(j+2))/sym.factorial(j+2))*Taylor.evalF(tn[i],yn[i],yk[j])
-            yn.append(temp)
-            aux = tn[i]+h
-            tn.append(aux)
+                    tn = [xo]
+                    yn = [yo]
+                    #aplicacion del metodo,  tn es para x, yn es para y
+                    for i in range(0,n):
+                        temp = yn[i]+h*Taylor.evalF(tn[i],yn[i],funcion)
+                        for j in range(0,len(yk)):
+                            temp += ((h**(j+2))/sym.factorial(j+2))*Taylor.evalF(tn[i],yn[i],yk[j])
+                        yn.append(temp)
+                        aux = tn[i]+h
+                        tn.append(aux)
 
-        t ={"tn":tn,"yn":yn}
-        tabla = pd.DataFrame(t)
-        html = tabla.to_html()
-        salida = {"tabla":html,"respuesta":yn[n], "metodo":"Taylor"}
-        return salida
+                    t ={"tn":tn,"yn":yn}
+                    tabla = pd.DataFrame(t)
+                    html = tabla.to_html()
+                    salida = {"Tabla":html,"Resultado":yn[n],"metodo":"Taylor"}
+                    return salida
+                else:
+                    error = "El valor de intervalo tiene que ser un entero"
+                    salida = {"Error:":error}
+                    return salida
+            else:
+                    error = "El valor de orden tiene que ser un entero y de dos en adelante"
+                    salida = {"Error:":error}
+                    return salida
+        else:
+            error = "Datos introducidos de manera erronea"
+            salida = {"Error:":error}
+            return salida
 
         
 
