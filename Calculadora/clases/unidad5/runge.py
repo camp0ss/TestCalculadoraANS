@@ -42,15 +42,15 @@ class Runge:
                 t ={"tn":tn,"yn":yn}
                 tabla = pd.DataFrame(t)
                 html = tabla.to_html()
-                salida = {"Tabla":html,"Resultado":yn[n],"metodo":"Runge-kutta de segundo orden"}
+                salida = {"tabla":html,"respuesta":yn[n],"metodo":"Runge-kutta de segundo orden"}
                 return salida
             else:
                 error = "El valor de intervalo tiene que ser un entero"
-                salida = {"Error:":error}
+                salida = {"Error":error,"metodo":"Runge-kutta de segundo orden"}
                 return salida
         else:
             error = "Datos introducidos de manera erronea"
-            salida = {"Error:":error}
+            salida = {"Error":error,"metodo":"Runge-kutta de segundo orden"}
             return salida
     #metodo de runge-kutta de tercer orden
     def rungeTres(self):
@@ -77,15 +77,15 @@ class Runge:
                 t ={"tn":tn,"yn":yn}
                 tabla = pd.DataFrame(t)
                 html = tabla.to_html()
-                salida = {"Tabla":html,"Resultado":yn[n],"metodo":"Runge-kutta de tercer orden"}
+                salida = {"tabla":html,"respuesta":yn[n],"metodo":"Runge-kutta de tercer orden"}
                 return salida
             else:
                 error = "El valor de intervalo tiene que ser un entero"
-                salida = {"Error:":error}
+                salida = {"Error":error,"metodo":"Runge-kutta de tercer orden"}
                 return salida
         else:
             error = "Datos introducidos de manera erronea"
-            salida = {"Error:":error}
+            salida = {"Error":error,"metodo":"Runge-kutta de tercer orden"}
             return salida
     #metodo de runge-kutta de cuarto orden
     def rungeCuatro(self):
@@ -113,13 +113,13 @@ class Runge:
                 t ={"tn":tn,"yn":yn}
                 tabla = pd.DataFrame(t)
                 html = tabla.to_html()
-                salida = {"Tabla":html,"Resultado":yn[n],"metodo":"Runge-kutta de cuarto orden"}
+                salida = {"tabla":html,"respuesta":yn[n],"metodo":"Runge-kutta de cuarto orden"}
                 return salida
             else:
                 error = "El valor de intervalo tiene que ser un entero"
-                salida = {"Error:":error}
+                salida = {"Error":error,"metodo":"Runge-kutta de cuarto orden"}
                 return salida
         else:
             error = "Datos introducidos de manera erronea"
-            salida = {"Error:":error}
+            salida = {"Error":error,"metodo":"Runge-kutta de cuarto orden"}
             return salida

@@ -114,14 +114,14 @@ class MultiPasos:
                 t = {"xi":tn,"yi":yn,"fi":fi}
                 tabla = pd.DataFrame(t)
                 html = tabla.to_html()
-                salida = {"Tabla":html,"Valor metodo predictor":predictor,"Valor metodo corrector":yn[k],"metodo":"multipasos"}
+                salida = {"tabla":html,"Valor_metodo_predictor":predictor,"Valor_metodo_corrector":yn[k],"metodo":"multipasos"}
                 return salida
             else:
                 error = "El valor de nivel tiene que ser un entero"
-                salida = {"Error:":error}
+                salida = {"Error":error,"metodo":"multipasos"}
                 return salida
         else:
             error = "Datos introducidos de manera erronea"
-            salida = {"Error:":error}
+            salida = {"Error":error,"metodo":"multipasos"}
             return salida
 

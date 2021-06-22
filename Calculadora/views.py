@@ -352,7 +352,6 @@ def solve(request):
     #Unidad 5:
     #Metodo de euler
     elif request.GET["tipo"] == "euler":
-        try:
             func = str(request.GET["funcion"])
             xInicial = float(parse_expr(request.GET["xInicial"]))
             yInicial = float(parse_expr(request.GET["yInicial"]))
@@ -361,8 +360,7 @@ def solve(request):
             opcion = int((request.GET["opcion"]))
 
             av = eulerModel(func, xInicial, yInicial, punto, valorH, opcion)
-        except:
-                av = {"Error":"Ingrese todos los datos necesarios", "metodo":"de Euler"}
+
 
     #Metodo de taylor
     elif request.GET["tipo"] == "taylor":
