@@ -68,6 +68,11 @@ def secanteModel(funcion,a,b,cifras):
 #Unidad 3:
 def lagran(listaX, punto, opcion, listaY="x",funcion=""):
     if opcion ==1:
+        print("aqui")
+        if len(listaX ) == 0 :
+            salida = {"Error":"Ingresar datos a la lista"
+        } 
+            return salida
         aver = lagrange.Lagrange
         aver = aver(funcion, listaX, punto)
         resu = aver.resultado()

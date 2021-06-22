@@ -58,25 +58,25 @@
 						<p>Funcion:</p>
 						<span id="pantalla" class="editor" style="background:#fff"></span>
 						<p style="display: inline-block;">Columnas</p>
-						<input style="display: inline-block;" type="text" id="cols1" name="cols1"> <br />
+						<input type="number" style="display: inline-block;" type="text" id="cols1" name="cols1"> <br />
 						<input type="hidden" style="display: inline-block;" type="text" id="rows1" name="rows1"
 							value="1"><br>
-						<input type="button" id="enviar" value="crear tabla" onclick="crear()" />
+						<input type="button" id="enviar" value="Crear tabla" onclick="crear()" />
 						<input type="button" id="limpiar" value="Limpiar" onclick="crear2()" />
 					</div>
 					<div id="deshabilitado2" style="display: none;">
 						<p style="display: inline-block;">Columnas</p>
-						<input style="display: inline-block;" type="text" id="cols" name="cols"> <br />
+						<input type="number" style="display: inline-block;" type="text" id="cols" name="cols"> <br />
 						<p type="hidden" style="display: inline-block;">Filas</p>
 						<input type="hidden" style="display: inline-block;" type="text" id="rows" name="rows"
 							value="2"><br>
-						<input type="button" id="enviar" value="crear tabla" onclick="crear()" />
+						<input type="button" id="enviar" value="Crear tabla" onclick="crear()" />
 						<input type="button" id="limpiar" value="Limpiar" onclick="crear2()" />
 					</div>
 				</td>
 				<td colspan='3'>
 
-					<p>Punto a evaluar:</p><input type="text" name="puntoEvaluar" required />
+					<p>Punto a evaluar:</p><input type="number" name="puntoEvaluar" required />
 
 					<span type="hidden" type="text" id="codigo" name="funcion" value="2"
 						style='padding:2%;'></span><br><br>
@@ -270,7 +270,7 @@
 				tabla += "<tr>";
 				tabla += "<td><p>" + (i + 1) + "</p></td>";
 				for (j = 0; j < col; j++) {
-					tabla += "<td>" + "<input type=\"text\" size=\"1\" name=\"" + i + "_" + j + "\">" + "</td>";
+					tabla += "<td>" + "<input type=\"text\" size=\"1\" name=\"" + i + "_" + j + "\" required >" + "</td>";
 				}
 				tabla += "</tr>";
 			}

@@ -17,6 +17,7 @@ def error_calculator_fourth(func,estimate_value, searched_value):
     real_value = sp.diff(func,x,4)  #codigo de sympy para calcular la cuarta derivada y asi poder calcular el valor real.
     real_value.expand()
     real_value = real_value.subs(x, searched_value)
+    real_value= round(real_value)
     e = round(abs(real_value-estimate_value),7)
     er = round(abs(e/real_value),7)
     er100 = round(abs((e/real_value)*100),7)
@@ -29,6 +30,7 @@ def error_calculator(func,estimate_value, searched_value, method_name):
     real_value = sp.diff(func,x,1) #derivada con sympy para poder encontrar el valor real
     real_value.expand()
     real_value = real_value.subs(x, searched_value)
+    real_value= round(real_value)
     e = abs(round(real_value-estimate_value,7))
     er = round(abs(e/real_value),7)
     er100 = round(abs(((e/real_value)*100)),7)

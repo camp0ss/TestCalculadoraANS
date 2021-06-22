@@ -21,6 +21,11 @@ class Lagrange:
         return n*factorial(n-1) 
 
     def resultado(self):
+        print("aqui")
+        if len(self.tabla ) == 0 :
+            salida = {"Error":"Ingresar datos a la lista"
+        } 
+            return salida
 
         x, y, z = symbols('x y z')
         init_printing(use_unicode=True)
@@ -115,6 +120,10 @@ class Lagrange_tabla:
         return n*factorial(n-1) 
 
     def resultado(self):
+        if len(self.tablax ) == 0 :
+            salida = {"Error":"Ingresar datos a la lista"
+        } 
+            return salida
 
         x, y, z = symbols('x y z')
         init_printing(use_unicode=True)

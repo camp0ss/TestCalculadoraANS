@@ -24,15 +24,15 @@ Métodos de Integración Numérica
 {% block imagen %}
 <br><br>
 <p>Limite superior:</p>
-<input style="width: 75%; display: inline-block;" id="limInf" name="limSup" type="text" required></input>
+<input style="width: 75%; display: inline-block;" id="limInf" name="limSup" type="number" required></input>
 <img style="display: inline-block;" src="{% static 'Calculadora/images/integral.png'%}" width="40px">
-<input style="width: 75%;display: inline-block;" id="limSup" name="limInf" type="text" required></input>
+<input style="width: 75%;display: inline-block;" id="limSup" name="limInf" type="number" required></input>
 <p>Limite inferior:</p>
 {% endblock %}
 
 
 {% block content %}
-<p>Intervalos:</p><input id="intervalos" name="intervalos" type="text" disabled></input>
+<p>Intervalos:</p><input id="intervalos" name="intervalos" type="number" disabled></input>
 
 {% endblock %}
 

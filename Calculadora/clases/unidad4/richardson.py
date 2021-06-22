@@ -6,6 +6,7 @@ import pandas as pd
 
 def finite_generator(f2,arg_h2,p2, me2, nvl2):
     lst_temp = list()
+    #primer derivada hacia adelante
     if me2 == 1:
         for SDX in range(nvl2):
             cas = Finitas(f2, arg_h2, p2)
@@ -14,6 +15,7 @@ def finite_generator(f2,arg_h2,p2, me2, nvl2):
             lst_temp.append(uwu)
             arg_h2= (arg_h2/2)
         return matrix_generator(lst_temp)
+    #primer derivada hacia atras
     elif me2 == 2:
         for SDX in range(nvl2):
             cas = Finitas(f2, arg_h2, p2)
@@ -22,6 +24,7 @@ def finite_generator(f2,arg_h2,p2, me2, nvl2):
             lst_temp.append(uwu)
             arg_h2= (arg_h2/2)
         return matrix_generator(lst_temp)
+    #segunda derivada hacia adelante
     elif me2 == 3:
         for SDX in range(nvl2):
             cas = Finitas(f2, arg_h2, p2)
@@ -30,6 +33,7 @@ def finite_generator(f2,arg_h2,p2, me2, nvl2):
             lst_temp.append(uwu)
             arg_h2= (arg_h2/2)
         return matrix_generator(lst_temp)
+    #segunda derivada hacia atras
     elif me2 == 4:
         for SDX in range(nvl2):
             cas = Finitas(f2, arg_h2, p2)
@@ -38,6 +42,7 @@ def finite_generator(f2,arg_h2,p2, me2, nvl2):
             lst_temp.append(uwu)
             arg_h2= (arg_h2/2)
         return matrix_generator(lst_temp)
+    #Centrada de segundo order
     elif me2 == 5:
         for SDX in range(nvl2):
             cas = Finitas(f2, arg_h2, p2)
@@ -46,6 +51,7 @@ def finite_generator(f2,arg_h2,p2, me2, nvl2):
             lst_temp.append(uwu)
             arg_h2= (arg_h2/2)
         return matrix_generator(lst_temp)
+    #Centrada de cuarto order
     elif me2 == 6:
         for SDX in range(nvl2):
             cas = Finitas(f2, arg_h2, p2)
@@ -54,6 +60,7 @@ def finite_generator(f2,arg_h2,p2, me2, nvl2):
             lst_temp.append(uwu)
             arg_h2= (arg_h2/2)
         return matrix_generator(lst_temp)
+    #Primera derivada con primera formula 3 puntos
     elif me2 == 7:
         for SDX in range(nvl2):
             cas = Finitas(f2, arg_h2, p2)
@@ -62,6 +69,7 @@ def finite_generator(f2,arg_h2,p2, me2, nvl2):
             lst_temp.append(uwu)
             arg_h2= (arg_h2/2)
         return matrix_generator(lst_temp)
+    #Primera derivada con segunda formula 3 puntos
     elif me2 == 8:
         for SDX in range(nvl2):
             cas = Finitas(f2, arg_h2, p2)
@@ -70,6 +78,7 @@ def finite_generator(f2,arg_h2,p2, me2, nvl2):
             lst_temp.append(uwu)
             arg_h2= (arg_h2/2)
         return matrix_generator(lst_temp)
+    #Cuarta derivada hacia adelante
     elif me2 == 9:
         for SDX in range(nvl2):
             cas = Finitas(f2, arg_h2, p2)
@@ -83,11 +92,9 @@ def funcionimportante (nivelprevio, k, i):
     ##print("IMPRIMIENDO ENTRADA DE LA FUNCION IMPORTANTE:\n",nivelprevio)
     k = k -1
     i = i -1
-    ##print("i+1 = ",nivelprevio[(i+1)] )
-    ##print("i = ",nivelprevio[i] )
+
     valorparak = (((4**k)*(nivelprevio[(i+1)]))/((4**k)-1))-(1*(nivelprevio[i])/((4**k)-1))
     print("Debug: ",type(k), type(nivelprevio[i]), type(i))
-    ##print("Valor: ", valorparak)
 
     return valorparak
 

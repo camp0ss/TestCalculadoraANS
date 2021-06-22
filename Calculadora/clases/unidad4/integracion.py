@@ -30,18 +30,28 @@ class TrapecioIntervalo:
         self.intervalo = intervalo
         self.func = func
         self.evl = evaluador
+        '''
+        LimInf = Limite inferior
+        limsup = Limite superior
+        intervalo = intervalos que se utilizaran
+        func = funcion
+        evl = evaluador, solo si es necesario
+        '''
     
     def resultado(self):
+        #Distancia entre intervalos
         h = (self.limSup-self.limInf)/self.intervalo
 
+        #Listas para mostrar las iteraciones
         i = list()
         Xi = list()
         fXi = list()
+        #Primera iteracion
         i.append(0)
         xi = self.limInf
         Xi.append(xi)
         fXi.append(funcion(self.limInf,self.func,self.evl))
-
+        #Segunda iteracion 
         for num in range(1, self.intervalo+1):
             i.append(num)
             xi = xi+h
@@ -66,19 +76,29 @@ class SimpsonTercio:
         self.limSup = limsup
         self.func = func
         self.evl = evaluador
+        '''
+        LimInf = Limite inferior
+        limsup = Limite superior
+        func = funcion
+        evl = evaluador, solo si es necesario
+        '''
     
     def resultado(self):
         Xm = (self.limInf+self.limSup)/2
 
+        #Listas para mostrar las iteraciones
         i = list()
         Xi = list()
         fXi = list()
+        #Primera iteracion
         i.append(0)
         Xi.append(self.limInf)
         fXi.append(funcion(self.limInf,self.func,self.evl))
+        #Segunda iteracion
         i.append(1)
         Xi.append(Xm)
         fXi.append(funcion(Xm,self.func,self.evl))
+        #Tercera iteracion
         i.append(2)
         Xi.append(self.limSup)
         fXi.append(funcion(self.limSup,self.func,self.evl))
@@ -98,18 +118,29 @@ class SimpTercIntervalo:
         self.intervalo = intervalo
         self.func = func
         self.evl = evaluador
+        '''
+        LimInf = Limite inferior
+        limsup = Limite superior
+        intervalo = intervalos que se utilizaran
+        func = funcion
+        evl = evaluador, solo si es necesario
+        '''
     
     def resultado(self):
+        #Distancia entre intervalos
         h = (self.limSup-self.limInf)/self.intervalo
 
+        #Listas para mostrar las iteraciones
         i = list()
         Xi = list()
         fXi = list()
+        #Primera iteracion
         i.append(0)
         xi = self.limInf
         Xi.append(xi)
         fXi.append(funcion(self.limInf,self.func,self.evl))
 
+        #Segunda iteracion
         for num in range(1, self.intervalo+1):
             i.append(num)
             xi = xi+h
@@ -147,18 +178,28 @@ class SimpOctavo:
         self.limSup = limsup
         self.func = func
         self.evl = evaluador
+        '''
+        LimInf = Limite inferior
+        limsup = Limite superior
+        func = funcion
+        evl = evaluador, solo si es necesario
+        '''
     
     def resultado(self):
+        #Distancia entre intervalos
         h = (self.limSup-self.limInf)/3
 
+        #Listas para mostrar las iteraciones
         i = list()
         Xi = list()
         fXi = list()
+        #Primera iteracion
         i.append(0)
         xi = self.limInf
         Xi.append(xi)
         fXi.append(funcion(self.limInf,self.func,self.evl))
 
+        #Segunda iteracion
         for num in range(1, 4):
             i.append(num)
             xi = xi+h
@@ -181,18 +222,29 @@ class SimpOctIntervalo:
         self.intervalo = intervalo
         self.func = func
         self.evl = evaluador
+        '''
+        LimInf = Limite inferior
+        limsup = Limite superior
+        intervalo = intervalos que se utilizaran
+        func = funcion
+        evl = evaluador, solo si es necesario
+        '''
     
     def resultado(self):
+        #Distancia entre intervalos
         h = (self.limSup-self.limInf)/self.intervalo
-
+        
+        #Listas para mostrar las iteraciones
         i = list()
         Xi = list()
         fXi = list()
+        #Primera iteracion
         i.append(0)
         xi = self.limInf
         Xi.append(xi)
         fXi.append(funcion(self.limInf,self.func,self.evl))
 
+        #Segunda iteracion
         for num in range(1, self.intervalo+1):
             i.append(num)
             xi = xi+h
@@ -240,6 +292,13 @@ class SimpAdaptativo:
         self.func = func
         self.tolerancia = tolerancia
         self.evl = evaluador
+        '''
+        LimInf = Limite inferior
+        limsup = Limite superior
+        func = funcion
+        tolerancia = tolerancia a usar
+        evl = evaluador, solo si es necesario
+        '''
 
     def ajuste(s1,s2,s3):
         return abs(s2+s3-s1)/15

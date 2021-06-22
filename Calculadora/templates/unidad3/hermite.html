@@ -42,18 +42,17 @@
 			<tr>
 				<td>
 					<div>
-						<p style="display: inline-block;">Columnas</p>
-						<input style="display: inline-block;" type="text" id="cols" name="cols"> <br />
+						<p type="number" style="display: inline-block;">Columnas</p>
+						<input type="number" style="display: inline-block;" type="text" id="cols" name="cols"> <br />
 						<p style="display: inline-block;">Filas</p>
-						<input style="display: inline-block;" type="text" id="rows" name="rows"
-							value="2"><br>
+						<input type="number" style="display: inline-block;" type="text" id="rows" name="rows"><br>
 						<input type="button" id="enviar" value="Crear tabla" onclick="crear()" />
 						<input type="button" id="limpiar" value="Limpiar" onclick="crear2   ()" />
 					</div>
 				</td>
 				<td>
 
-					<p>Punto a evaluar:</p><input type="text" name="punto" required/>
+					<p>Punto a evaluar:</p><input type="number" name="punto" required/>
 
 					<span type="hidden" type="text" id="codigo" name="funcion" value="2"
 						style='padding:2%;'></span><br><br>

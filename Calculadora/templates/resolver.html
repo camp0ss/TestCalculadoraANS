@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Método: {{tipo}}</title>
+  <title>Método: {{av.metodo}}</title>
 
   <!-- Scrip para grafica-->
   <link rel="stylesheet" type="text/css" href="{% static 'Calculadora/styles/grafica.css' %}">
@@ -57,6 +57,12 @@
 
 
     <!--Unidad 3:-->
+    {%if av.ErrorInter %}
+    <h1>Error: {{av.ErrorInter}} </h1>
+    {% endif %}
+    {%if av.Error %}
+    <h1>Error: {{av.Error}} </h1>
+    {% endif %}
     {%if av.simple %}
     <h1>Funcion simplificada: </h1>
     <p><span id="problem2">{{ av.simple}}</span></p>
@@ -78,7 +84,7 @@
     <h1>Valor estimado: {{ av.estimateValue}}</h1>
     {% endif %}
     {%if av.realValue %}
-    <h1>Valor real: {{ av.estimateValue}}</h1>
+    <h1>Valor real: {{ av.realValue}}</h1>
     {% endif %}
     {%if av.e %}
     <h1>Error: {{ av.e}}</h1>
