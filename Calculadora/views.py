@@ -104,7 +104,7 @@ def solve(request):
         except:
                 av = {"Error":"Ingrese todos datos necesarios", "metodo":"bisección"} 
 
-    #Metodo falsa posicion
+    #Metodo falsa posicio
     elif request.GET["tipo"] == "falsa":
         try:
             func = parse_expr(request.GET["funcion"])
