@@ -19,13 +19,13 @@ Métodos de Euler
 {% endblock %}
 
 {% block content %}
-<p>x inicial:</p><input id="xInicial" name="xInicial" type="number" required></input>
-<p>y inicial:</p><input id="yInicial" name="yInicial" type="number" required></input>
+<p>x inicial:</p><input id="xInicial" name="xInicial" type="number" step="any" required></input>
+<p>y inicial:</p><input id="yInicial" name="yInicial" type="number" step="any" required></input>
 {% endblock %}
 
 {% block content2 %}
 <p>Intervalo:</p><input id="valorH" name="valorH" type="number" required></input>
-<p>Punto a evaluar:</p><input id="punto" name="punto" type="number" required></input>
+<p>Punto a evaluar:</p><input id="punto" name="punto" type="number" step="any" required></input>
 {% endblock %}
 
 {% block tipo %}euler{% endblock %}
