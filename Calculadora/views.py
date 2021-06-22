@@ -352,61 +352,52 @@ def solve(request):
     #Unidad 5:
     #Metodo de euler
     elif request.GET["tipo"] == "euler":
-            func = str(request.GET["funcion"])
-            xInicial = float(parse_expr(request.GET["xInicial"]))
-            yInicial = float(parse_expr(request.GET["yInicial"]))
-            valorH = int(parse_expr(request.GET["valorH"]))
-            punto = float(parse_expr(request.GET["punto"]))
-            opcion = int((request.GET["opcion"]))
+        func = str(request.GET["funcion"])
+        xInicial = float(parse_expr(request.GET["xInicial"]))
+        yInicial = float(parse_expr(request.GET["yInicial"]))
+        valorH = int(parse_expr(request.GET["valorH"]))
+        punto = float(parse_expr(request.GET["punto"]))
+        opcion = int((request.GET["opcion"]))
 
-            av = eulerModel(func, xInicial, yInicial, punto, valorH, opcion)
+        av = eulerModel(func, xInicial, yInicial, punto, valorH, opcion)
 
 
     #Metodo de taylor
     elif request.GET["tipo"] == "taylor":
-        try:
-            func = str(request.GET["funcion"])
-            xInicial = float(parse_expr(request.GET["xInicial"]))
-            yInicial = float(parse_expr(request.GET["yInicial"]))
-            valorH = int(parse_expr(request.GET["valorH"]))
-            punto = float(parse_expr(request.GET["punto"]))
-            orden = int((request.GET["orden"]))
+        func = str(request.GET["funcion"])
+        xInicial = float(parse_expr(request.GET["xInicial"]))
+        yInicial = float(parse_expr(request.GET["yInicial"]))
+        valorH = int(parse_expr(request.GET["valorH"]))
+        punto = float(parse_expr(request.GET["punto"]))
+        orden = int((request.GET["orden"]))
 
-            av = taylorModel(func, xInicial, yInicial, punto, valorH, orden)
-        except:
-                av = {"Error":"Ingrese todos los datos necesarios", "metodo":"de Taylor"}
-
+        av = taylorModel(func, xInicial, yInicial, punto, valorH, orden)
+        
     #Metodos de runge kutta
     elif request.GET["tipo"] == "runge":
-        try:
-            func = str(request.GET["funcion"])
-            xInicial = float(parse_expr(request.GET["xInicial"]))
-            yInicial = float(parse_expr(request.GET["yInicial"]))
-            intervalo = int(parse_expr(request.GET["valorH"]))
-            punto = float(parse_expr(request.GET["punto"]))
-            opcion = int((request.GET["opcion"]))
+        func = str(request.GET["funcion"])
+        xInicial = float(parse_expr(request.GET["xInicial"]))
+        yInicial = float(parse_expr(request.GET["yInicial"]))
+        intervalo = int(parse_expr(request.GET["valorH"]))
+        punto = float(parse_expr(request.GET["punto"]))
+        opcion = int((request.GET["opcion"]))
 
-            av = rungeModel(func, xInicial, yInicial, punto, intervalo, opcion)
-        except:
-                av = {"Error":"Ingrese todos los datos necesarios", "metodo":"Runge-Kutta"}
-                
+        av = rungeModel(func, xInicial, yInicial, punto, intervalo, opcion)          
+
     #Metodo multipasos
     elif request.GET["tipo"] == "multipasos":
-        try:
-            func = str(request.GET["funcion"])
-            xInicial = float(parse_expr(request.GET["xInicial"]))
-            yInicial = float(parse_expr(request.GET["yInicial"]))
-            intervalo = float(parse_expr(request.GET["valorh"]))
-            punto = float(parse_expr(request.GET["punto"]))
-            nivel = int(parse_expr(request.GET["nivel"]))
-            inicializador = int((request.GET["inicializador"]))
-            predictor = int((request.GET["predictor"]))
-            corrector = int((request.GET["corrector"]))
+        func = str(request.GET["funcion"])
+        xInicial = float(parse_expr(request.GET["xInicial"]))
+        yInicial = float(parse_expr(request.GET["yInicial"]))
+        intervalo = float(parse_expr(request.GET["valorh"]))
+        punto = float(parse_expr(request.GET["punto"]))
+        nivel = int(parse_expr(request.GET["nivel"]))
+        inicializador = int((request.GET["inicializador"]))
+        predictor = int((request.GET["predictor"]))
+        corrector = int((request.GET["corrector"]))
 
-            av = multipasosModel(inicializador,predictor,corrector,func, xInicial, yInicial, punto, intervalo,nivel)
-        except:
-                av = {"Error":"Ingrese todos los datos necesarios", "metodo":"multipasos"}
-    
-    #Datos:
+        av = multipasosModel(inicializador,predictor,corrector,func, xInicial, yInicial, punto, intervalo,nivel)
+
+#Datos:
     data = {"av": av,}
     return render(request, "resolver.html", data)

@@ -7,13 +7,13 @@ class Error:
         es = 0.5*(10**(2-cifras))
         return es
 #ln(e+x)
-class EjercicioUno:
+class seriesTaylor:
     #inicializa los datos a ocupar, el valor a evaluar y las cifras significativas
     def __init__(self, valor, cifras):
         self.x = valor
         self.cifras = cifras
     #realiza la evaluacion en la serie de taylor correspondiente
-    def evaluacion(self):
+    def EjercicioUno(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
@@ -42,16 +42,11 @@ class EjercicioUno:
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"ln(e+x)"}
         return salida
 #e^(x^2)        
-class EjercicioDos:
-    #inicializa los datos a ocupar, el valor a evaluar y las cifras significativas
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
     #realiza la evaluacion en la serie de taylor correspondiente
-    def  evaluacion(self):
+    def  EjercicioDos(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
@@ -79,16 +74,11 @@ class EjercicioDos:
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"e^(x^2)"}
         return salida
 #sen(x)
-class EjercicioTres:
-    #inicializa los datos a ocupar, el valor a evaluar y las cifras significativas
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
     #realiza la evaluacion en la serie de taylor correspondiente
-    def evaluacion(self):
+    def EjercicioTres(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
@@ -117,16 +107,11 @@ class EjercicioTres:
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"sen(x)"}
         return salida
 #cos(x)
-class EjercicioCuatro:
-    #inicializa los datos a ocupar, el valor a evaluar y las cifras significativas
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
     #realiza la evaluacion en la serie de taylor correspondiente
-    def evaluacion(self):
+    def EjercicioCuatro(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
@@ -155,16 +140,11 @@ class EjercicioCuatro:
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"cos(x)"}
         return salida
 #e^x
-class EjercicioCinco:
-    #inicializa los datos a ocupar, el valor a evaluar y las cifras significativas
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
     #realiza la evaluacion en la serie de taylor correspondiente
-    def evaluacion(self):
+    def EjercicioCinco(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
@@ -192,16 +172,11 @@ class EjercicioCinco:
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"e^(x^2)"}
         return salida
 #sh(x)
-class EjercicioSeis:
-    #inicializa los datos a ocupar, el valor a evaluar y las cifras significativas
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
     #realiza la evaluacion en la serie de taylor correspondiente
-    def evaluacion(self):
+    def EjercicioSeis(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
@@ -229,16 +204,11 @@ class EjercicioSeis:
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"sh(x)"}
         return salida
 #ch(x)
-class EjercicioSiete:
-    #inicializa los datos a ocupar, el valor a evaluar y las cifras significativas
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
     #realiza la evaluacion en la serie de taylor correspondiente
-    def evaluacion(self):
+    def EjercicioSiete(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
@@ -266,17 +236,11 @@ class EjercicioSiete:
         t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
         tabla = pd.DataFrame(t)
         html = tabla.to_html()
-        salida = {"grafica": html, "raiz": f}
+        salida = {"tabla": html, "raiz": f, "metodo":"ch(x))"}
         return salida
 #arcsen(x)
-class EjercicioOcho:
-    #inicializa los datos a ocupar, el valor a evaluar y las cifras significativas
-    #x debe estar entre los valores de -1 a 1, excluyendo estos valores
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
     #realiza la evaluacion en la serie de taylor correspondiente
-    def evaluacion(self):
+    def EjercicioOcho(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
@@ -305,21 +269,17 @@ class EjercicioOcho:
             t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
             tabla = pd.DataFrame(t)
             html = tabla.to_html()
-            salida = {"grafica": html, "raiz": f}
+            salida = {"tabla": html, "raiz": f, "metodo":"arcsen(x))"}
             return salida
         else:
             s = "Dato a evaluar fuera del rango, se permite en el rango ]-1,1["
-            salida = {"Error":s}
+            salida = {"Error":s, "metodo":"arcsen(x))"}
             return salida
 #ln(1+x)
-class EjercicioNueve:
     #inicializa los datos a ocupar, el valor a evaluar y las cifras significativas
     #x debe estar entre los valores de -1 a 1, excluyendo estos valores
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
     #realiza la evaluacion en la serie de taylor correspondiente
-    def evaluacion(self):
+    def EjercicioNueve(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
@@ -348,21 +308,17 @@ class EjercicioNueve:
             t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
             tabla = pd.DataFrame(t)
             html = tabla.to_html()
-            salida = {"grafica": html, "raiz": f}
+            salida = {"tabla": html, "raiz": f, "metodo":"ln(1+x)"}
             return salida
         else:
             s = "Dato a evaluar fuera del rango, se permite en el rango ]-1,1["
-            salida = {"Error":s}
+            salida = {"Error":s, "metodo":"ln(1+x)"}
             return salida
 #1/(1+x^2)
-class EjercicioDiez:
     #inicializa los datos a ocupar, el valor a evaluar y las cifras significativas
     #x debe estar entre los valores de -1 a 1, excluyendo estos valores
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
     #realiza la evaluacion en la serie de taylor correspondiente
-    def evaluacion(self):
+    def EjercicioDiez(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
@@ -391,21 +347,17 @@ class EjercicioDiez:
             t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
             tabla = pd.DataFrame(t)
             html = tabla.to_html()
-            salida = {"grafica": html, "raiz": f}
+            salida = {"tabla": html, "raiz": f, "metodo":"1/(1+x^2)"}
             return salida
         else:
             s = "Dato a evaluar fuera del rango, se permite en el rango ]-1,1["
-            salida = {"Error":s}
+            salida = {"Error":s, "metodo":"1/(1+x^2)"}
             return salida
 #arctg(x)
-class EjercicioOnce:
     #inicializa los datos a ocupar, el valor a evaluar y las cifras significativas
     #x debe estar entre los valores de -1 a 1, excluyendo estos valores
-    def __init__(self, valor, cifras):
-        self.x = valor
-        self.cifras = cifras
     #realiza la evaluacion en la serie de taylor correspondiente
-    def evaluacion(self):
+    def EjercicioOnce(self):
         x = self.x
         es = Error.errors(self.cifras)
         ea = es+1
@@ -434,9 +386,9 @@ class EjercicioOnce:
             t = {"Iteracion": itera, "Valor aproximado": xr, "Error aproximado": err}
             tabla = pd.DataFrame(t)
             html = tabla.to_html()
-            salida = {"grafica": html, "raiz": f}
+            salida = {"tabla": html, "raiz": f, "metodo":"arctg(x)"}
             return salida
         else:
             s = "Dato a evaluar fuera del rango, se permite en el rango ]-1,1["
-            salida = {"Error":s}
+            salida = {"Error":s, "metodo":"arctg(x)"}
             return salida
