@@ -37,57 +37,63 @@ class PuntoFijo:
 
     def resultado(self):
 
-        ''' Creación de variables.'''
+        try:
+            ''' Creación de variables.'''
 
-        ea = 0
-        es = -1
-        ejecucion = 1
+            ea = 0
+            es = -1
+            ejecucion = 1
 
-        ''' Creación de listas.'''
+            ''' Creación de listas.'''
 
-        lstea= list()
-        lstxi = list()
-        lstx2 = list()
-        lstgx = list()
-        lstfx1 = list()
-        lstfxr = list()
-        lstfx1Xfxr = list()
-        lstieracion = list()
+            lstea= list()
+            lstxi = list()
+            lstx2 = list()
+            lstgx = list()
+            lstfx1 = list()
+            lstfxr = list()
+            lstfx1Xfxr = list()
+            lstieracion = list()
 
-        gx = PuntoFijo.evaluar(self.funcion, self.intervalo)
-        ea = abs((gx-self.intervalo)/gx)*100
-
-        ''' Guardado de la primera iteración.'''
-
-        lstieracion.append(ejecucion)
-        lstgx.append("{0:.15f}".format(gx))
-        lstea.append("{0:.15f}".format(ea))
-        lstxi.append("{0:.15f}".format(self.intervalo))
-
-        while ea >= es :
-
-            es = (0.5*(10**(2-self.cifras)))
-            self.intervalo = gx
             gx = PuntoFijo.evaluar(self.funcion, self.intervalo)
             ea = abs((gx-self.intervalo)/gx)*100
-            print(gx)
-            ''' Guardado de las iteraciones.'''
+
+            ''' Guardado de la primera iteración.'''
 
             lstieracion.append(ejecucion)
-            lstxi.append("{0:.15f}".format(self.intervalo))
             lstgx.append("{0:.15f}".format(gx))
             lstea.append("{0:.15f}".format(ea))
-            ejecucion = ejecucion + 1
+            lstxi.append("{0:.15f}".format(self.intervalo))
 
-        d = {"Iteracion":lstieracion,"Xi":lstxi,"g(x)":lstgx,"ea":lstea}
-        resu = pd.DataFrame(d)
-        print(resu)
-        html = resu.to_html() #pasar a tabla HTML
-        print("\nRaíz es: ", "{0:.15f}".format(gx))
-        salida = {"tabla":html, "raiz":"{0:.15f}".format(gx), "error":"{0:.15f}".format(ea),
-        "funcion":sp.rcode(self.funcion), "metodo":"Punto fijo",
-        "graficar":"si"} #grafica
-        return salida
+            while ea >= es :
+
+                es = (0.5*(10**(2-self.cifras)))
+                self.intervalo = gx
+                gx = PuntoFijo.evaluar(self.funcion, self.intervalo)
+                ea = abs((gx-self.intervalo)/gx)*100
+                print(gx)
+                ''' Guardado de las iteraciones.'''
+
+                lstieracion.append(ejecucion)
+                lstxi.append("{0:.15f}".format(self.intervalo))
+                lstgx.append("{0:.15f}".format(gx))
+                lstea.append("{0:.15f}".format(ea))
+                ejecucion = ejecucion + 1
+
+            d = {"Iteracion":lstieracion,"Xi":lstxi,"g(x)":lstgx,"ea":lstea}
+            resu = pd.DataFrame(d)
+            print(resu)
+            html = resu.to_html() #pasar a tabla HTML
+            print("\nRaíz es: ", "{0:.15f}".format(gx))
+            salida = {"tabla":html, "raiz":"{0:.15f}".format(gx), "error":"{0:.15f}".format(ea),
+            "funcion":sp.rcode(self.funcion), "metodo":"Punto fijo",
+            "graficar":"si"} #grafica
+            return salida
+        except TypeError:
+            salida = {"Error":"No se puede operar", "metodo":"Punto fijo"}
+            return salida
+
+
 
 #ecuacion = parse_expr("tan(x)+1")
 #prueba = PuntoFijo(ecuacion,7.04,3)

@@ -1,5 +1,6 @@
 from .finitas import Finitas
 from sympy.parsing.sympy_parser import parse_expr
+from sympy import *
 import numpy as np
 import pandas as pd
 
@@ -156,5 +157,5 @@ class Richardson:
         valor =matriz.loc[:,[(nivel-1)]]
         #ahora teniendo solo la penultima columna, extraemos el valor de la primera fila.
         respuesta =  valor.iat[0,0]
-        solu = {"tabla": html, "respuesta": respuesta, "metodo":"Extrapolación de Richardson"}
+        solu = {"tabla": html, "funcion":rcode(self.funcion), "respuesta": respuesta, "metodo":"Extrapolación de Richardson"}
         return solu

@@ -4,7 +4,7 @@ from numpy import real
 import sympy as sp
 from sympy import *
 
-x = sp.Symbol('x')
+x = sp.Symbol('x', real=True)
 
 def ff(func, evaluator): 
     #sirve para evaluar en la funcion que se recibe.

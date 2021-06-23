@@ -304,24 +304,27 @@ def solve(request):
             limSup = float(parse_expr(request.GET["limSup"]))
             func = parse_expr(request.GET["funcion"])
             opcion = int(request.GET["opcion"])
-            if opcion == 1:
-                av = trapecioModel(limInf, limSup, func)
-            elif opcion == 2:
-                intervalos = int(request.GET["intervalos"])
-                av = trapecioCompuestoModel(limInf, limSup, intervalos, func)
-            elif opcion == 3:
-                av = simpsonTercioModel(limInf, limSup, func)
-            elif opcion == 4:
-                intervalos = int(request.GET["intervalos"])
-                av = simpsonTercioCompuestoModel(limInf, limSup, intervalos, func)
-            elif opcion == 5:
-                av = simpsonOctavoModel(limInf, limSup, func)
-            elif opcion == 6:
-                intervalos = int(request.GET["intervalos"])
-                av = simpsonOctavoCompuestoModel(limInf, limSup, intervalos, func)
-            elif opcion == 7:
-                intervalos = int(request.GET["intervalos"])
-                av = simpsonTercioAdaptativoModel(limInf, limSup, intervalos, func)
+            if limInf < limSup:
+                if opcion == 1:
+                    av = trapecioModel(limInf, limSup, func)
+                elif opcion == 2:
+                    intervalos = int(request.GET["intervalos"])
+                    av = trapecioCompuestoModel(limInf, limSup, intervalos, func)
+                elif opcion == 3:
+                    av = simpsonTercioModel(limInf, limSup, func)
+                elif opcion == 4:
+                    intervalos = int(request.GET["intervalos"])
+                    av = simpsonTercioCompuestoModel(limInf, limSup, intervalos, func)
+                elif opcion == 5:
+                    av = simpsonOctavoModel(limInf, limSup, func)
+                elif opcion == 6:
+                    intervalos = int(request.GET["intervalos"])
+                    av = simpsonOctavoCompuestoModel(limInf, limSup, intervalos, func)
+                elif opcion == 7:
+                    intervalos = int(request.GET["intervalos"])
+                    av = simpsonTercioAdaptativoModel(limInf, limSup, intervalos, func)
+            else:
+                av = {"Error":"Límites no válidos", "metodo":"integración numérica"}
         except:
                 av = {"Error":"Ingrese todos los datos necesarios", "metodo":"integración numérica"}
 
@@ -344,9 +347,12 @@ def solve(request):
             limInf = float(parse_expr(request.GET["limInf"]))
             limSup = float(parse_expr(request.GET["limSup"]))
             nivel = int(request.GET["nivel"])
-            av = rosembergModel(limInf, limSup, nivel, func)
+            if limInf < limSup:
+                av = rosembergModel(limInf, limSup, nivel, func)
+            else:
+                av = {"Error":"Límites no válidos", "metodo":"integración por Rosemberg"}
         except:
-                av = {"Error":"Ingrese todos los datos necesarios", "metodo":"integracion por Rosemberg"}
+                av = {"Error":"Ingrese todos los datos necesarios", "metodo":"integración por Rosemberg"}
 
 
     #Unidad 5:

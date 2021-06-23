@@ -89,8 +89,8 @@ var mathField = MQ.MathField(mathFieldSpan,
 				}
 
 
-				if (texto.includes("s*%e*c*")) {
-					texto = texto.replaceAll("s*%e*c*", "sec");
+				if (texto.includes("s*e*c*")) {
+					texto = texto.replaceAll("s*e*c*", "sec");
 				}
 				if (texto.includes("c*s*c*")) {
 					texto = texto.replaceAll("c*s*c*", "csc");
@@ -110,9 +110,28 @@ var mathField = MQ.MathField(mathFieldSpan,
 				if (texto.includes("t*a*n^(-1)*")) {
 					texto = texto.replaceAll("t*a*n^(-1)*", "atan");
 				}
+				
+				if (texto.includes("sin*(-1)*")) {
+					texto = texto.replaceAll("sin*(-1)*", "asin");
+				}
+				if (texto.includes("cos*(-1)*")) {
+					texto = texto.replaceAll("cos*(-1)*", "acos");
+				}
+				if (texto.includes("tan*(-1)*")) {
+					texto = texto.replaceAll("tan*(-1)*", "atan");
+				}
 
+				if (texto.includes("csc*(-1)*")) {
+					texto = texto.replaceAll("csc*(-1)*", "acsc");
+				}
+				if (texto.includes("sec*(-1)*")) {
+					texto = texto.replaceAll("sec*(-1)*", "asec");
+				}
+				if (texto.includes("acot*(-1)*")) {
+					texto = texto.replaceAll("acot*(-1)*", "acot");
+				}
 
-
+				
 				if (texto.includes("s*%e*c^(-1)*")) {
 					texto = texto.replaceAll("s*%e*c^(-1)*", "asec");
 				}

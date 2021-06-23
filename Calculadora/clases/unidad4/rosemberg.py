@@ -63,10 +63,10 @@ class Rosemberg:
 
     def resultado(self):
         lista_de_listas = []
-        lista_de_listas.append([Trapecio(self.limInf,self.limSup, self.func, self.evl)]) #Inicializa la matriz que contiene la primera columna
+        lista_de_listas.append([Trapecio(self.limSup, self.limInf,self.func, self.evl)]) #Inicializa la matriz que contiene la primera columna
         level = 0
         for num in range(1, self.nivel):
-            lista_de_listas.append([TrapecioCompuesto(self.limInf,self.limSup, num, self.func, self.evl)])
+            lista_de_listas.append([TrapecioCompuesto(self.limSup, self.limInf, num, self.func, self.evl)])
             level+=1
         print("Datos iniciales: ",lista_de_listas)
 
