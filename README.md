@@ -1,5 +1,5 @@
 
-<h1 align="center"><p>Universidad de El Salvador</p><p>Facultad Multidisciplinaria de Occidente</><p>Departamento de Ingeniera y Arquitectura</p></h1>
+<h1 align="center"><p>Universidad de El Salvador</p><p>Facultad Multidisciplinaria de Occidente</><p>Departamento de Ingeniería y Arquitectura</p></h1>
 
 # Calculadora ANS
 
@@ -27,6 +27,7 @@ envCalculadora\Scripts\activate.bat
 
 ## Uso
 ```
+pip install -r requirements.txt
 python manage.py runserver
 ```
 
